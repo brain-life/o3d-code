@@ -7,14 +7,14 @@ from subprocess import call
 dataset = ['O3D_STN', 'O3D_HCP3T', 'O3D_HCP7T']
 
 subjects = {}
-subjects['O3D_STN'] = ['001', '002', '003']
-subjects['O3D_HCP3T'] = ['004', '005', '006']
-subjects['O3D_HCP7T'] = ['007', '008', '009']
+subjects['O3D_STN'] = ['001', '002', '003', '004']
+subjects['O3D_HCP3T'] = ['005', '006', '007', '008']
+subjects['O3D_HCP7T'] = ['009', '010', '011', '012']
 
 dir_root = '.'
 
-files = ['README', 
-         'CHANGES', 
+files = ['README',
+         'CHANGES',
          'dataset_description.json',
          'participants.csv']
 
@@ -97,7 +97,7 @@ for ds in dataset:
         call(["mkdir", dir_2])
         call(["touch", join(dir_2, readme)])
         for  ss in subjects[ds]:
-            dir_3 = join(dir_2, 'sub-' + ss) 
+            dir_3 = join(dir_2, 'sub-' + ss)
             call(['mkdir', dir_3])
             for dd in data_dir[pl]:
                 dir_4 = join(dir_3, dd)
@@ -105,10 +105,3 @@ for ds in dataset:
                 for df in data_file[pl, dd]:
                     filename = join(dir_4, 'sub-' + ss + df)
                     call(["touch", filename])
-            
-        
-
-        
-
-
-
