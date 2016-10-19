@@ -13,11 +13,13 @@ if len(sys.argv) > 1:
         touch = True
 
 subjects = ["105115", "110411", "111312", "113619"]
-repititions = ['0' + `i` for i in range(10)] + ["10"]
-# lmax = ['lmax' + `i` for i in range(2, 14, 2)]
-lmax = ['lmax2']
+repititions = ['0' + `i` for i in range(1, 10)] + ["10"]
+algorithms = [("tens", "dtidet", "lmax2"), ("detr", "csddet", "lmax8"), ("prob", "csdprob", "lmax8")]
 
-matlab_filepath = ""
+matlab_filepath = {}
+matlab_filepath["tens"] = "/N/dc2/projects/lifebid/HCP/Brent/cogs610/rep_data/"
+matlab_filepath["detr"] = "/N/dc2/projects/lifebid/HCP/Brent/cogs610/rep_data/"
+matlab_filepath["prob"] = "/N/dc2/projects/lifebid/HCP/Brent/cogs610/7t_rep_data/"
 destination = ""
 
 subnum = {}
@@ -27,7 +29,8 @@ for i in range(len(subjects)):
 for subject in subjects:
     destination = "O3D_HCP3T/derivatives/connectome_tract/sub-" + subnum[subject] + "/dwi/"
     for rep in repititions:
-        for l in lmax:
-            infile = matlab_filepath + 'stn_' + subject + '_tens_' + l + '_rep' + rep + '.mat'
-            outfile = destination + 'sub-' + subnum[subject] + '_dwi_variant-dtidetlife_trial-' + rep
+        for alg in algorithms:
+            inalg, outalg, lmax = alg
+            infile = matlab_filepath[inalg] + 'hcp_' + subject + '_' + inalg +'_' + lmax + '_rep' + rep + '.mat'
+            outfile = destination + 'sub-' + subnum[subject] + '_dwi_variant-' + outalg + 'life_trial-' + rep
             o3d_bids_init_connectome_mat2csv.convert(infile, outfile, dummy, validate, touch)
