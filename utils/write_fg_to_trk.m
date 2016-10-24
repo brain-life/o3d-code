@@ -1,4 +1,4 @@
-function res = write_fg_to_trk( fg, nii_file, trk_file)
+function write_fg_to_trk( fg, nii_file, trk_file)
 % Write fg data into Trackvis format
 %
 %   write_fg_to_trk(fg, filename)
@@ -46,10 +46,14 @@ hdr_trk.property_name = ['','','','','','','','','',''];
 % The affine transformation
 scale_dim = diag(1 ./ hdr_trk.voxel_size);
 affine = hdr_nii.qto_xyz;
-affine(1:3,1:3) = scale_dim .* affine(1:3,1:3);
+% correct displacement of Vistasoft
+affine(1,4) = affine(1,4) + affine(1,1);
+affine(2,4) = affine(2,4) + affine(2,2);
+affine(3,4) = affine(3,4) + affine(3,3);
 trk2nii = affine;
-nii2trk = inv(trk2nii);
-hdr_trk.vox_to_ras = trk2nii;
+affine(1:3,1:3) = scale_dim .* affine(1:3,1:3);
+nii2trk = inv(affine);
+hdr_trk.vox_to_ras = transpose(trk2nii);
 
 hdr_trk.reserved = '';
 
@@ -139,5 +143,4 @@ end
         
 fclose(fid)
 
-res = hdr_nii.qto_xyz
 
