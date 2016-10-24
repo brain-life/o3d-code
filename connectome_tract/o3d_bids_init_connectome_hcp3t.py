@@ -1,5 +1,5 @@
-import o3d_bids_init_connectome_mat2csv
 import sys
+import o3d_bids_init_connectome_mat2csv
 
 dummy = False
 validate = False
