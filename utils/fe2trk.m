@@ -12,7 +12,8 @@ w = feGet(fe,'fiber weights');
 fg = feGet(fe,'fibers acpc');  
 
 % Filter the fascicle with non zero weight
-fgLife = fgExtract(fg, w(w > 0));  
+ind = find(w>0);
+fgLife = fgExtract(fg, ind);  
 
 % Store all fascicles/streamline as trk file
 write_fg_to_trk(fgLife, ref_src, trk_out);
