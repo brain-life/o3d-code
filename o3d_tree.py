@@ -7,26 +7,31 @@ from subprocess import call
 dataset = ['O3D_STN', 'O3D_HCP3T', 'O3D_HCP7T']
 
 subjects = {}
-subjects['O3D_STN'] = ['001', '002', '003']
-subjects['O3D_HCP3T'] = ['004', '005', '006']
-subjects['O3D_HCP7T'] = ['007', '008', '009']
+subjects['O3D_STN'] = ['001', '002', '003', '004']
+subjects['O3D_HCP3T'] = ['005', '006', '007', '008']
+subjects['O3D_HCP7T'] = ['009', '010', '011', '012']
 
 dir_root = '.'
 
-files = ['README', 
-         'CHANGES', 
+files = ['README',
+         'CHANGES',
          'dataset_description.json',
          'participants.csv']
 
 derivatives = 'derivatives'
 
-pipelines = ['hcp',
+pipelines = ['preprocess',
+             'freesurfer',
              'recon_models',
              'tracking_dtidet_trk',
              'tracking_csddet_trk',
              'tracking_csdprob_trk',
-             'life_structure',
-             'dissection_afq',
+             'tracking_dtidet_tck',
+             'tracking_csddet_tck',
+             'tracking_csdprob_tck',
+             'life_struct',
+             'dissection_afq_trk',
+             'dissection_afq_tck',
              'connectome_tract']
 
 readme = 'README'
@@ -34,14 +39,19 @@ readme = 'README'
 data_dir = {}
 data_file = {}
 
-data_dir['hcp'] = ['anat', 'dwi']
-data_file['hcp', 'anat'] = ['_T1w.nii.gz',
+data_dir['preprocess'] = ['anat', 'dwi']
+data_file['preprocess', 'anat'] = ['_T1w.nii.gz',
                         '_T1w_brainmask.nii.gz',
                         '_T1w_dtissue.nii.gz']
-data_file['hcp', 'dwi'] = ['_dwi.nii.gz',
+data_file['preprocess', 'dwi'] = ['_dwi.nii.gz',
                        '_dwi_brainmask.nii.gz',
                        '_dwi.bval',
                        '_dwi_bvec']
+
+data_dir['freesurfer'] = ['anat']
+data_file['freesurfer', 'anat'] = ['_parc-wm_T1w.nii.gz',
+                                   '_aparc_aseg_T1w.nii.gz',
+                                   '_ribbon_T1w.nii.gz']
 
 data_dir['recon_models'] = ['anat', 'dwi']
 data_file['recon_models', 'anat'] = ['_T1w_wmmask.nii.gz']
@@ -64,21 +74,34 @@ data_file['tracking_csddet_trk', 'dwi'] = \
     ['_b-2000_dwi_ODF_variant-csddet_trial_tract.trk',
      '_b-2000_dwi_ODF_variant-csddetlife_trial_tract.trk']
 
-data_dir['tracking_dtidet_trk'] = ['dwi']
-data_file['tracking_dtidet_trk', 'dwi'] = \
-    ['_b-2000_dwi_ODF_variant-csddet_trial_tract.trk',
-     '_b-2000_dwi_ODF_variant-csddetlife_trial_tract.trk']
-
 data_dir['tracking_csdprob_trk'] = ['dwi']
 data_file['tracking_csdprob_trk', 'dwi'] = \
     ['_b-2000_dwi_ODF_variant-csdprob_trial_tract.trk',
      '_b-2000_dwi_ODF_variant-csdproblife_trial_tract.trk']
 
-data_dir['life_structure'] = ['dwi']
-data_file['life_structure', 'dwi'] = []
+data_dir['tracking_dtidet_tck'] = ['dwi']
+data_file['tracking_dtidet_tck', 'dwi'] = \
+    ['_b-2000_dwi_ODF_variant-dtidet_trial_tract.tck',
+     '_b-2000_dwi_ODF_variant-dtidetlife_trial_tract.tck']
 
-data_dir['dissection_afq'] = ['dwi']
-data_file['dissection_afq', 'dwi'] = []
+data_dir['tracking_csddet_tck'] = ['dwi']
+data_file['tracking_csddet_tck', 'dwi'] = \
+    ['_b-2000_dwi_ODF_variant-csddet_trial_tract.tck',
+     '_b-2000_dwi_ODF_variant-csddetlife_trial_tract.tck']
+
+data_dir['tracking_csdprob_tck'] = ['dwi']
+data_file['tracking_csdprob_tck', 'dwi'] = \
+    ['_b-2000_dwi_ODF_variant-csdprob_trial_tract.tck',
+     '_b-2000_dwi_ODF_variant-csdproblife_trial_tract.tck']
+
+data_dir['life_struct'] = ['dwi']
+data_file['life_struct', 'dwi'] = []
+
+data_dir['dissection_afq_tck'] = ['dwi']
+data_file['dissection_afq_tck', 'dwi'] = []
+
+data_dir['dissection_afq_trk'] = ['dwi']
+data_file['dissection_afq_trk', 'dwi'] = []
 
 data_dir['connectome_tract'] = ['dwi']
 data_file['connectome_tract', 'dwi'] = []
@@ -97,7 +120,7 @@ for ds in dataset:
         call(["mkdir", dir_2])
         call(["touch", join(dir_2, readme)])
         for  ss in subjects[ds]:
-            dir_3 = join(dir_2, 'sub-' + ss) 
+            dir_3 = join(dir_2, 'sub-' + ss)
             call(['mkdir', dir_3])
             for dd in data_dir[pl]:
                 dir_4 = join(dir_3, dd)
@@ -105,10 +128,3 @@ for ds in dataset:
                 for df in data_file[pl, dd]:
                     filename = join(dir_4, 'sub-' + ss + df)
                     call(["touch", filename])
-            
-        
-
-        
-
-
-
