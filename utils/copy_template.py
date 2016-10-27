@@ -1,4 +1,5 @@
 import o3d_bids_init_connectome_mat2csv
+from subprocess import call
 import sys
 import re
 import itertools
@@ -52,22 +53,40 @@ def subjectNameFromNumber(num):
     }
     return mapping[num]
 
+def mri_convert(infile, outfile, dummy = True):
+    if dummy:
+        print "call(['module', 'load', 'freesurfer'])"
+        print "mri_convert -it mgz -ot nii " + infile + " " + outfile
+    else:
+        # call(['module', 'load', 'freesurfer'])
+        call(['mri_convert', '-it', 'mgz', '-ot', 'nii', infile, outfile])
+
+def mrconvert(infile, outfile, dummy = True):
+    if dummy:
+        print "call(['module', 'load', 'mrtrix'])"
+        print "mrconvert " + infile + " " + outfile
+    else:
+        # call(['module', 'load', 'mrtrix'])
+        call(['mrconvert', infile, outfile])
+
 # in_inter takes an interpolatable file path for example:
 # in_inter = "/path/to/{sub1,sub2,sub3,sub4}/sub/{file1,file2,file3}.mat"
-def copy(in_inter, out_inter, action = "copy"):
+def copy(in_inter, out_inter, action = "copy", dummy = True):
     all_in = generateAllStrings(in_inter)
     all_out = generateAllStrings(out_inter)
     for i in range(len(all_in)):
         if (action == "mat2fiber"):
-            o3d_bids_init_connectome_mat2csv.convert(all_in[i], all_out[i], dummy=True)
+            o3d_bids_init_connectome_mat2csv.convert(all_in[i], all_out[i], dummy=dummy)
         elif (action == "mri_convert"):
-            print "call(['module', 'load', 'freesurfer'])"
-            print "mri_convert -it mgz -ot nii " + all_in[i] + " " + all_out[i]
+            mri_convert(all_in[i], all_out[i], dummy)
         elif (action == "mrconvert"):
-            print "call(['module', 'load', 'mrtrix'])"
-            print "mrconvert " + all_in[i] + " " + all_out[i]
+            mrconvert(all_in[i], all_out[i], dummy)
         elif (action == "copy"):
-            print "cp " + all_in[i] + " >> " + all_out[i]
+            if dummy:
+                print "cp " + all_in[i] + " >> " + all_out[i]
+            else:
+                call(['cp', all_in[i], all_out[i]])
+
 
     # o3d_bids_init_connectome_mat2csv.convert(infile, outfile, dummy, validate, touch)
 
