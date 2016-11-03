@@ -104,7 +104,11 @@ def main(dir_root):
     data_file['dissection_afq_trk', 'dwi'] = []
 
     data_dir['connectome_tract'] = ['dwi']
-    data_file['connectome_tract', 'dwi'] = []
+    data_file['connectome_tract', 'dwi'] =\
+        ['_b-2000_dwi_DTI_variant-dtidetlife_trial-{}_tract_connectome.csv'.format(i+1) for i in range(10)] +\
+        ['_b-2000_dwi_DTI_variant-csddetlife_trial-{}_tract_connectome.csv'.format(i+1) for i in range(10)] +\
+        ['_b-2000_dwi_DTI_variant-csdproblife_trial-{}_tract_connectome.csv'.format(i+1) for i in range(10)]
+
 
 
     for ds in dataset:
