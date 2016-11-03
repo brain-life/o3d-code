@@ -50,7 +50,7 @@ anatomy = mapping[dataset]["anatomy"].format(name)
 mat_out = mapping[dataset]["mat_out"].format(subject, subject, rep_str)
 input = mapping[dataset]["input"].format(name, rep_str)
 output = mapping[dataset]["output"].format(subject, subject, rep_str)
-copier.copy(input, output, action = 'tck2trk', dummy = False)
+copier.copy(input, output, anatomy = anatomy, action = 'tck2trk', dummy = False)
 copier.copy(mat_in, mat_out, anatomy = anatomy, action = "LIFE", dummy = False)
 
 # in_str = mapping[dataset]["input"].format(name, rep_str)
