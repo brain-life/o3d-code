@@ -1,15 +1,7 @@
 import sys
 import utils.copy_template as copier
 
-dataset = ""
-subject = ""
-if len(sys.argv) > 2:
-    dataset = sys.argv[1]
-    subject = sys.argv[2]
-else:
-    print("Script takes 2 arguments")
-    print("Run again using 'python init_connectome_tract.py dataset subject'")
-    sys.exit()
+dataset, subject, root = copier.parseCommandLine(sys.argv)
 
 name = copier.subjectNameFromNumber(subject)
 repititions = ['0' + `i` for i in range(1,10)] + ["10"]
@@ -19,27 +11,27 @@ lifebid_root = "/N/dc2/projects/lifebid/"
 
 mapping = {}
 mapping["stn"] = {
-    "input": lifebid_root + "code/ccaiafa/Caiafa_Pestilli_paper2015/paper_datasets/STN/sub-{}/tractography/run01_fliprot_aligned_trilin_csd_lmax8_wm_SD_STREAM_NUM{}-500000.tck",
-    "output": "O3D_STN/derivatives/tracking_csddet_trk/sub-{}/dwi/sub-{}_dwi_variant-csddet-trial-{}_tract.trk",
+    "input": lifebid_root + "code/ccaiafa/Caiafa_Pestilli_paper2015/paper_datasets/STN/sub-{}/tractography/run01_fliprot_aligned_trilin_csd_lmax8_wm_SD_STREAM-NUM{}-500000.tck",
+    "output": root + "O3D_STN/derivatives/tracking_csddet_trk/sub-{}/dwi/sub-{}_dwi_variant-csddet-trial-{}_tract.trk",
     "mat_in": lifebid_root + "code/ccaiafa/Caiafa_Pestilli_paper2015/paper_datasets/STN/sub-{}/fe_structures/fe_structure_{}_96dirs_b2000_1p5iso_STC_run01_SD_STREAM_lmax8_connNUM{}.mat",
     "anatomy": lifebid_root + "code/ccaiafa/Caiafa_Pestilli_paper2015/paper_datasets/STN/sub-{}/dwi/run01_fliprot_aligned_trilin.nii.gz",
-    "mat_out": "O3D_STN/derivatives/tracking_csddet_trk/sub-{}/dwi/sub-{}_dwi_variant-csddetlife_trial-{}_tract.trk"
+    "mat_out": root + "O3D_STN/derivatives/tracking_csddet_trk/sub-{}/dwi/sub-{}_dwi_variant-csddetlife_trial-{}_tract.trk"
 }
 
 mapping["hcp3t"] = {
-    "input": lifebid_root + "code/ccaiafa/Caiafa_Pestilli_paper2015/paper_datasets/HCP3T/sub-{}/tractography/dwi_data_b2000_aligned_trilin_csd_lmax8_wm_SD_STREAM_NUM{}-500000.tck",
-    "output": "O3D_HCP3T/derivatives/tracking_csddet_trk/sub-{}/dwi/sub-{}_dwi_variant-csddet-trial-{}_tract.trk",
+    "input": lifebid_root + "code/ccaiafa/Caiafa_Pestilli_paper2015/paper_datasets/HCP3T/sub-{}/tractography/dwi_data_b2000_aligned_trilin_csd_lmax8_wm_SD_STREAM-NUM{}-500000.tck",
+    "output": root + "O3D_HCP3T/derivatives/tracking_csddet_trk/sub-{}/dwi/sub-{}_dwi_variant-csddet-trial-{}_tract.trk",
     "mat_in": lifebid_root + "code/ccaiafa/Caiafa_Pestilli_paper2015/paper_datasets/HCP3T/sub-{}/fe_structures/fe_structure_{}_STC_run01_SD_STREAM_lmax8_connNUM{}.mat",
     "anatomy": lifebid_root + "code/ccaiafa/Caiafa_Pestilli_paper2015/paper_datasets/HCP3T/sub-{}/dwi/dwi_data_b2000_aligned_trilin.nii.gz",
-    "mat_out": "O3D_HCP3T/derivatives/tracking_csddet_trk/sub-{}/dwi/sub-{}_dwi_variant-csddetlife_trial-{}_tract.trk"
+    "mat_out": root + "O3D_HCP3T/derivatives/tracking_csddet_trk/sub-{}/dwi/sub-{}_dwi_variant-csddetlife_trial-{}_tract.trk"
 }
 
 mapping["hcp7t"] = {
-    "input": lifebid_root + "code/ccaiafa/Caiafa_Pestilli_paper2015/paper_datasets/HCP7T/sub-{}/tractography/data_b2000_csd_lmax8_wm_SD_STREAM_NUM{}-500000.tck",
-    "output": "O3D_HCP7T/derivatives/tracking_csddet_trk/sub-{}/dwi/sub-{}_dwi_variant-csddet-trial-{}_tract.trk",
+    "input": lifebid_root + "code/ccaiafa/Caiafa_Pestilli_paper2015/paper_datasets/HCP7T/sub-{}/tractography/data_b2000_csd_lmax8_wm_SD_STREAM-NUM{}-500000.tck",
+    "output": root + "O3D_HCP7T/derivatives/tracking_csddet_trk/sub-{}/dwi/sub-{}_dwi_variant-csddet-trial-{}_tract.trk",
     "mat_in": lifebid_root + "code/ccaiafa/Caiafa_Pestilli_paper2015/paper_datasets/HCP7T/sub-{}/fe_structures/fe_structure_{}_STC_run01_SD_STREAM_lmax8_connNUM{}.mat",
     "anatomy": lifebid_root + "code/ccaiafa/Caiafa_Pestilli_paper2015/paper_datasets/HCP7T/sub-{}/dwi/data_b2000.nii.gz",
-    "mat_out": "O3D_HCP7T/derivatives/tracking_csddet_trk/sub-{}/dwi/sub-{}_dwi_variant-csddetlife_trial-{}_tract.trk"
+    "mat_out": root + "O3D_HCP7T/derivatives/tracking_csddet_trk/sub-{}/dwi/sub-{}_dwi_variant-csddetlife_trial-{}_tract.trk"
 }
 
 # Need script to compute AFTER-LIFE trk files, then run that here as well.

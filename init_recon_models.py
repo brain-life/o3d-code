@@ -61,4 +61,4 @@ for i in range(len(files)):
     if (mapping[dataset]["input_files"][i][:-3] == "mif"):
         action = "mrconvert"
 
-    copier.copy(in_str, out_str, action = action)
+    copier.copy(in_str, out_str, action = action, dummy = False)

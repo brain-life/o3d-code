@@ -1,15 +1,7 @@
 import sys
 import utils.copy_template as copier
 
-dataset = ""
-subject = ""
-if len(sys.argv) > 2:
-    dataset = sys.argv[1]
-    subject = sys.argv[2]
-else:
-    print("Script takes 2 arguments")
-    print("Run again using 'python init_connectome_tract.py dataset subject'")
-    sys.exit()
+dataset, subject, root = copier.parseCommandLine(sys.argv)
 
 lifebid_root = "/N/dc2/projects/lifebid/"
 
@@ -35,10 +27,10 @@ mapping["stn"] = {
         name, getSublong(subject), name, name
     ],
     "output": [
-        "O3D_STN/derivatives/preprocess/sub-{}/anat/sub-{}_T1w.nii.gz",
-        "O3D_STN/derivatives/preprocess/sub-{}/anat/sub-{}_T1w_brainmask.nii.gz",
-        "O3D_STN/derivatives/preprocess/sub-{}/dwi/sub-{}_dwi.nii.gz",
-        "O3D_STN/derivatives/preprocess/sub-{}/dwi/sub-{}_dwi_brainmask.nii.gz"
+        root + "O3D_STN/derivatives/preprocess/sub-{}/anat/sub-{}_T1w.nii.gz",
+        root + "O3D_STN/derivatives/preprocess/sub-{}/anat/sub-{}_T1w_brainmask.nii.gz",
+        root + "O3D_STN/derivatives/preprocess/sub-{}/dwi/sub-{}_dwi.nii.gz",
+        root + "O3D_STN/derivatives/preprocess/sub-{}/dwi/sub-{}_dwi_brainmask.nii.gz"
     ]
 }
 
@@ -53,10 +45,10 @@ mapping["hcp3t"] = {
         name, name, name, name
     ],
     "output": [
-        "O3D_HCP3T/derivatives/preprocess/sub-{}/anat/sub-{}_T1w.nii.gz",
-        "O3D_HCP3T/derivatives/preprocess/sub-{}/anat/sub-{}_T1w_brainmask.nii.gz",
-        "O3D_HCP3T/derivatives/preprocess/sub-{}/dwi/sub-{}_dwi.nii.gz",
-        "O3D_HCP3T/derivatives/preprocess/sub-{}/dwi/sub-{}_dwi_brainmask.nii.gz"
+        root + "O3D_HCP3T/derivatives/preprocess/sub-{}/anat/sub-{}_T1w.nii.gz",
+        root + "O3D_HCP3T/derivatives/preprocess/sub-{}/anat/sub-{}_T1w_brainmask.nii.gz",
+        root + "O3D_HCP3T/derivatives/preprocess/sub-{}/dwi/sub-{}_dwi.nii.gz",
+        root + "O3D_HCP3T/derivatives/preprocess/sub-{}/dwi/sub-{}_dwi_brainmask.nii.gz"
     ]
 }
 
@@ -71,10 +63,10 @@ mapping["hcp7t"] = {
         name, name, name, name
     ],
     "output": [
-        "O3D_HCP7T/derivatives/preprocess/sub-{}/anat/sub-{}_T1w.nii.gz",
-        "O3D_HCP7T/derivatives/preprocess/sub-{}/anat/sub-{}_T1w_brainmask.nii.gz",
-        "O3D_HCP7T/derivatives/preprocess/sub-{}/dwi/sub-{}_dwi.nii.gz",
-        "O3D_HCP7T/derivatives/preprocess/sub-{}/dwi/sub-{}_dwi_brainmask.nii.gz"
+        root + "O3D_HCP7T/derivatives/preprocess/sub-{}/anat/sub-{}_T1w.nii.gz",
+        root + "O3D_HCP7T/derivatives/preprocess/sub-{}/anat/sub-{}_T1w_brainmask.nii.gz",
+        root + "O3D_HCP7T/derivatives/preprocess/sub-{}/dwi/sub-{}_dwi.nii.gz",
+        root + "O3D_HCP7T/derivatives/preprocess/sub-{}/dwi/sub-{}_dwi_brainmask.nii.gz"
     ]
 }
 

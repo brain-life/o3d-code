@@ -35,4 +35,4 @@ mapping["hcp7t"] = {
 in_str = mapping[dataset]["input"].format(name, rep_str)
 out_str = mapping[dataset]["output"].format(subject, subject, rep_str)
 anatomy = mapping[dataset]["anatomy"].format(name)
-copier.copy(in_str, out_str, anatomy = anatomy, action = "trk2tck" dummy = False)
+copier.copy(in_str, out_str, anatomy = anatomy, action = "trk2tck", dummy = False)
