@@ -3,6 +3,8 @@ from subprocess import call
 import sys
 import re
 import itertools
+import tractconverter
+from tractconverter import FORMATS
 
 dummy = False
 validate = False
@@ -53,6 +55,21 @@ def subjectNameFromNumber(num):
     }
     return mapping[num]
 
+def parseCommandLine(argv):
+    dataset = ""
+    subject = ""
+    root = "./"
+    if len(argv) > 2:
+        dataset = argv[1]
+        subject = argv[2]
+        if len(argv) > 3:
+            root = argv[3] + "/"
+    else:
+        print("Script takes 2 arguments")
+        print("Run again using 'python init_connectome_tract.py dataset subject'")
+        sys.exit()
+    return (dataset, subject, root)
+
 def mri_convert(infile, outfile, dummy = True):
     if dummy:
         print "call(['module', 'load', 'freesurfer'])"
@@ -69,9 +86,38 @@ def mrconvert(infile, outfile, dummy = True):
         # call(['module', 'load', 'mrtrix'])
         call(['mrconvert', infile, outfile])
 
+def life(infile, outfile, anatomy, dummy = True):
+    if dummy:
+        print 'matlab -nosplash -nodesktop -r "addpath(genpath(\'/N/dc2/projects/lifebid/Paolo/local/matlab\'));fe2trk ' + infile + ' ' + anatomy + ' ' + outfile + '"'
+    else:
+        call(['matlab', '-nosplash', '-nodesktop', '-r', 'addpath(genpath(\'/N/dc2/projects/lifebid/Paolo/local/matlab\'));fe2trk ' + infile + ' ' + anatomy + ' ' + outfile + ';exit;'])
+# matlab -nosplash -nodesktop -r "addpath(genpath('/N/dc2/projects/lifebid/Paolo/local/matlab'));fe2trk /N/dc2/projects/lifebid/code/ccaiafa/Caiafa_Pestilli_paper2015/paper_datasets/STN/sub-FP/fe_structures/fe_structure_FP_96dirs_b2000_1p5iso_STC_run01_tensor__connNUM01.mat /N/dc2/projects/lifebid/code/ccaiafa/Caiafa_Pestilli_paper2015/paper_datasets/STN/sub-FP/dwi/run01_fliprot_aligned_trilin.nii.gz out.trk"
+
+def trk2tck(infile, outfile, anatomy, dummy = True):
+    if dummy:
+        print ''
+    else:
+        trk_format = FORMATS['trk']
+        tck_format = FORMATS['tck']
+
+        input = trk_format(infile, anatomy)
+        output = tck_format.create(outfile, input.hdr, anatomy)
+        tractconverter.convert(input, output)
+
+def tck2trk(infile, outfile, anatomy, dummy = True):
+    if dummy:
+        print ''
+    else:
+        trk_format = FORMATS['trk']
+        tck_format = FORMATS['tck']
+
+        input = tck_format(infile, anatomy)
+        output = trk_format.create(outfile, input.hdr, anatomy)
+        tractconverter.convert(input, output)
+
 # in_inter takes an interpolatable file path for example:
 # in_inter = "/path/to/{sub1,sub2,sub3,sub4}/sub/{file1,file2,file3}.mat"
-def copy(in_inter, out_inter, action = "copy", dummy = True):
+def copy(in_inter, out_inter, action = "copy", dummy = True, anatomy = ""):
     all_in = generateAllStrings(in_inter)
     all_out = generateAllStrings(out_inter)
     for i in range(len(all_in)):
@@ -81,6 +127,12 @@ def copy(in_inter, out_inter, action = "copy", dummy = True):
             mri_convert(all_in[i], all_out[i], dummy)
         elif (action == "mrconvert"):
             mrconvert(all_in[i], all_out[i], dummy)
+        elif (action == "LIFE"):
+            life(all_in[i], all_out[i], dummy = dummy, anatomy = anatomy)
+        elif (action == "trk2tck"):
+            trk2tck(all_in[i], all_out[i], dummy = dummy, anatomy = anatomy)
+        elif (action == "tck2trk"):
+            tck2trk(all_in[i], all_out[i], dummy = dummy, anatomy = anatomy)
         elif (action == "copy"):
             if dummy:
                 print "cp " + all_in[i] + " >> " + all_out[i]
