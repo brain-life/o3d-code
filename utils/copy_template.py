@@ -86,12 +86,25 @@ def mrconvert(infile, outfile, dummy = True):
         # call(['module', 'load', 'mrtrix'])
         call(['mrconvert', infile, outfile])
 
+def mask(infile, outfile, mask, dummy = True):
+    if dummy:
+        print ""
+    else:
+        call(["fslmaths", infile, "-mas", mask, outfile])
+
 def life(infile, outfile, anatomy, dummy = True):
     if dummy:
         print 'matlab -nosplash -nodesktop -r "addpath(genpath(\'/N/dc2/projects/lifebid/Paolo/local/matlab\'));fe2trk ' + infile + ' ' + anatomy + ' ' + outfile + '"'
     else:
         call(['matlab', '-nosplash', '-nodesktop', '-r', 'addpath(genpath(\'/N/dc2/projects/lifebid/Paolo/local/matlab\'));fe2trk ' + infile + ' ' + anatomy + ' ' + outfile + ';exit;'])
 # matlab -nosplash -nodesktop -r "addpath(genpath('/N/dc2/projects/lifebid/Paolo/local/matlab'));fe2trk /N/dc2/projects/lifebid/code/ccaiafa/Caiafa_Pestilli_paper2015/paper_datasets/STN/sub-FP/fe_structures/fe_structure_FP_96dirs_b2000_1p5iso_STC_run01_tensor__connNUM01.mat /N/dc2/projects/lifebid/code/ccaiafa/Caiafa_Pestilli_paper2015/paper_datasets/STN/sub-FP/dwi/run01_fliprot_aligned_trilin.nii.gz out.trk"
+# export MATLABPATH="/N/u/andnpatt/Karst/lifebid/o3d-code/utils"
+
+def afq2trk(infile, outfile, anatomy, dummy = True):
+    if dummy:
+        print 'matlab -nosplash -nodesktop -r "addpath(genpath(\'/N/dc2/projects/lifebid/Paolo/local/matlab\'));afq2trk ' + infile + ' ' + anatomy + ' ' + outfile + '"'
+    else:
+        call(['matlab', '-nosplash', '-nodesktop', '-r', 'addpath(genpath(\'/N/dc2/projects/lifebid/Paolo/local/matlab\'));afq2trk ' + infile + ' ' + anatomy + ' ' + outfile + ';exit;'])
 
 def trk2tck(infile, outfile, anatomy, dummy = True):
     if dummy:
@@ -129,10 +142,14 @@ def copy(in_inter, out_inter, action = "copy", dummy = True, anatomy = ""):
             mrconvert(all_in[i], all_out[i], dummy)
         elif (action == "LIFE"):
             life(all_in[i], all_out[i], dummy = dummy, anatomy = anatomy)
+        elif (action == "afq2trk"):
+            afq2trk(all_in[i], all_out[i], dummy = dummy, anatomy = anatomy)
         elif (action == "trk2tck"):
             trk2tck(all_in[i], all_out[i], dummy = dummy, anatomy = anatomy)
         elif (action == "tck2trk"):
             tck2trk(all_in[i], all_out[i], dummy = dummy, anatomy = anatomy)
+        elif (action == "mask"):
+            mask(all_in[i], all_out[i], dummy = dummy, mask = anatomy)
         elif (action == "copy"):
             if dummy:
                 print "cp " + all_in[i] + " >> " + all_out[i]
