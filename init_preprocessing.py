@@ -92,8 +92,8 @@ copier.copy(inputs[3].format(params[3]), outputs[3].format(subject, subject), du
 
 bvec_in = mapping[dataset]["bval_in"].format(name) + ".bvecs"
 bval_in = mapping[dataset]["bval_in"].format(name) + ".bvals"
-bvec_out = dataset_root[dataset] + out_dwi.format(subject) + "sub-{}_b-2000_dwi".format(subject) + ".bvecs"
-bval_out = dataset_root[dataset] + out_dwi.format(subject) + "sub-{}_b-2000_dwi".format(subject) + ".bvals"
+bvec_out = root + dataset_root[dataset] + out_dwi.format(subject) + "sub-{}_b-2000_dwi".format(subject) + ".bvecs"
+bval_out = root + dataset_root[dataset] + out_dwi.format(subject) + "sub-{}_b-2000_dwi".format(subject) + ".bvals"
 
 copier.copy(bval_in, bval_out, action = "copy", dummy = False)
 if dataset == "hcp7t":
