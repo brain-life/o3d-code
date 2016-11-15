@@ -34,7 +34,7 @@ mapping["hcp3t"] = {
 # matlab -nosplash -nodesktop -r "addpath(genpath('/N/dc2/projects/lifebid/Paolo/local/matlab'));fe2trk /N/dc2/projects/lifebid/code/ccaiafa/Caiafa_Pestilli_paper2015/paper_datasets/STN/sub-FP/fe_structures/fe_structure_FP_96dirs_b2000_1p5iso_STC_run01_tensor__connNUM01.mat /N/dc2/projects/lifebid/code/ccaiafa/Caiafa_Pestilli_paper2015/paper_datasets/STN/sub-FP/dwi/run01_fliprot_aligned_trilin.nii.gz out.trk"
 
 
-in_str = mapping[dataset]["input"].format(subject, subject, rep_str, tracts)
-out_str = mapping[dataset]["output"].format(subject, subject, rep_str, tracts)
+in_str = mapping[dataset]["input"].format(subject, subject, rep_str, tract_str)
+out_str = mapping[dataset]["output"].format(subject, subject, rep_str, tract_str)
 anatomy = mapping[dataset]["anatomy"].format(name)
 copier.copy(in_str, out_str, anatomy = anatomy, action = "trk2tck", dummy = False)

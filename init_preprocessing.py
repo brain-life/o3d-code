@@ -18,7 +18,7 @@ def getSublong(num_str):
 mapping = {}
 mapping["stn"] = {
     "input": [
-        lifebid_root + "2t1/predator/{}_diffusion/anatomy/t1.nii.gz",
+        lifebid_root + "2t1/predator/{}_96dirs_b2000_1p5iso/anatomy/t1.nii.gz",
         lifebid_root + "2t1/anatomy/{}/mri/brainmask.mgz",
         lifebid_root + "code/ccaiafa/Caiafa_Pestilli_paper2015/paper_datasets/STN/sub-{}/dwi/run01_fliprot_aligned_trilin.nii.gz",
         lifebid_root + "code/ccaiafa/Caiafa_Pestilli_paper2015/paper_datasets/STN/sub-{}/dwi/brainMask.nii.gz"

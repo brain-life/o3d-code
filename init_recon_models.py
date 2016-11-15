@@ -4,6 +4,8 @@ import utils.copy_template as copier
 dataset, subject, root = copier.parseCommandLine(sys.argv)
 
 name = copier.subjectNameFromNumber(subject)
+lifebid_root = "/N/dc2/projects/lifebid/"
+
 
 files = [
     "anat/sub-{}_T1_wmmask.nii.gz",
