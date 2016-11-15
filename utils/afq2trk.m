@@ -33,7 +33,6 @@ load(afq_src);
 
 % Write each tract
 for t=1:size(fascicles,2)
-    trk_subset = [trk_out '_subset-' afq_code{t} '_tract.trk'];
+    trk_subset = [trk_out '_set-' afq_code{t} '_tract.trk'];
     write_fg_to_trk(fascicles(t), ref_src, trk_subset);
 end
-    

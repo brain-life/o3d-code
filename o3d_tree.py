@@ -102,11 +102,11 @@ def main(dir_root):
 
     data_dir['dissection_afq_tck'] = ['dwi']
     data_file['dissection_afq_tck', 'dwi'] = \
-        ['_b-2000_dwi_DTI_variant-{}_trial-{}_tract_variant-afq_subset-{}_tract.tck'.format(a, i+1, t) for a in algs for i in range(10) for t in tracts]
+        ['_b-2000_dwi_DTI_variant-{}_trial-{}_tract_variant-afq_set-{}_tract.tck'.format(a, i+1, t) for a in algs for i in range(10) for t in tracts]
 
     data_dir['dissection_afq_trk'] = ['dwi']
     data_file['dissection_afq_trk', 'dwi'] = \
-        ['_b-2000_dwi_DTI_variant-{}_trial-{}_tract_variant-afq_subset-{}_tract.trk'.format(a, i+1, t) for a in algs for i in range(10) for t in tracts]
+        ['_b-2000_dwi_DTI_variant-{}_trial-{}_tract_variant-afq_set-{}_tract.trk'.format(a, i+1, t) for a in algs for i in range(10) for t in tracts]
 
     data_dir['connectome_tract'] = ['dwi']
     data_file['connectome_tract', 'dwi'] =\
