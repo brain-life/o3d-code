@@ -19,7 +19,6 @@ files = [
 mapping = {}
 mapping["stn"] = {
     "input_dir": "/N/dc2/projects/lifebid/2t1/predator/{}_96dirs_b2000_1p5iso/fibers_new/",
-    "bval_in": lifebid_root + "code/ccaiafa/Caiafa_Pestilli_paper2015/paper_datasets/STN/sub-{}/dwi/run01_fliprot_aligned_trilin",
     "input_files": [
         "run01_fliprot_aligned_trilin_wm.mif",
         "run01_fliprot_aligned_trilin_fa.mif",
@@ -33,7 +32,6 @@ mapping["stn"] = {
 
 mapping["hcp3t"] = {
     "input_dir": "/N/dc2/projects/lifebid/2t1/HCP/{}/fibers_new/",
-    "bval_in": lifebid_root + "code/ccaiafa/Caiafa_Pestilli_paper2015/paper_datasets/HCP3T/sub-{}/dwi/dwi_data_b2000_aligned_trilin",
     "input_files": [
         "dwi_data_b2000_aligned_trilin_wm.mif",
         "dwi_data_b2000_aligned_trilin_fa.mif",
@@ -47,7 +45,6 @@ mapping["hcp3t"] = {
 
 mapping["hcp7t"] = {
     "input_dir": "/N/dc2/projects/lifebid/HCP7/{}/fibers/",
-    "bval_in": lifebid_root + "code/ccaiafa/Caiafa_Pestilli_paper2015/paper_datasets/HCP7T/sub-{}/dwi/data_b2000",
     "input_files": [
         "data-b2000_wm.mif",
         "data_b2000_fa.mif",
@@ -75,16 +72,7 @@ for i in range(len(files)):
 
     copier.copy(in_str, out_str, action = action, dummy = False)
 
-    bvec_in = mapping[dataset]["bval_in"].format(name) + ".bvecs"
-    bval_in = mapping[dataset]["bval_in"].format(name) + ".bvals"
-    bvec_out = mapping[dataset]["output"].format(subject) + ".bvecs"
-    bval_out = mapping[dataset]["output"].format(subject) + ".bvals"
-
-    copier.copy(bval_in, bval_out, action = "copy", dummy = False)
     if (dataset == "hcp7t" and files[i][:-10] in masks):
         mask = mapping[dataset]["mask"].format(name)
         # for ease, I am overloading the meaning of "anatomy" in the copy function
         copier.copy(out_str, out_str, anatomy = mask, action = "mask", dummy = False)
-        copier.copy(bvec_in, bvec_out, anatomy = mask, action = "mask", dummy = False)
-    else:
-        copier.copy(bvec_in, bvec_out, action = "copy", dummy = False)

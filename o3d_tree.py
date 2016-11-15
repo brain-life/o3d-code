@@ -43,10 +43,10 @@ def main(dir_root):
     data_file['preprocess', 'anat'] = ['_T1w.nii.gz',
                             '_T1w_brainmask.nii.gz',
                             '_T1w_dtissue.nii.gz']
-    data_file['preprocess', 'dwi'] = ['_dwi.nii.gz',
+    data_file['preprocess', 'dwi'] = ['_b-2000_dwi.nii.gz',
                            '_dwi_brainmask.nii.gz',
-                           '_dwi.bval',
-                           '_dwi_bvec']
+                           '_b-2000_dwi.bval',
+                           '_b-2000_dwi_bvec']
 
     data_dir['freesurfer'] = ['anat']
     data_file['freesurfer', 'anat'] = ['_parc-wm_T1w.nii.gz',
@@ -55,10 +55,7 @@ def main(dir_root):
 
     data_dir['recon_models'] = ['anat', 'dwi']
     data_file['recon_models', 'anat'] = ['_T1w_wmmask.nii.gz']
-    data_file['recon_models', 'dwi'] = ['_dwi_b-2000_dwi.nii.gz',
-                                        '_dwi_b-2000_dwi.bval',
-                                        '_dwi_b-2000_dwi.bvec',
-                                        '_dwi_b-2000_dwi_FA.nii.gz',
+    data_file['recon_models', 'dwi'] = ['_dwi_b-2000_dwi_FA.nii.gz',
                                         '_dwi_b-2000_dwi_MD.nii.gz',
                                         '_dwi_b-2000_dwi_DTI.nii.gz',
                                         '_dwi_b-2000_dwi_ODF.nii.gz',
