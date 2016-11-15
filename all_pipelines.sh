@@ -11,6 +11,8 @@ dataset=$1
 subject=$2
 root=$3
 
+cd /N/dc2/projects/o3d/code
+
 python init_connectome_tract.py $dataset $subject $root &
 python init_preprocessing.py $dataset $subject $root &
 python init_recon_models.py $dataset $subject $root &
