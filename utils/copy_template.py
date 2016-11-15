@@ -160,5 +160,5 @@ def copy(in_inter, out_inter, action = "copy", dummy = True, anatomy = ""):
     # o3d_bids_init_connectome_mat2csv.convert(infile, outfile, dummy, validate, touch)
 
 # in_str = "/N/dc2/projects/lifebid/HCP/Brent/cogs610/reps_data/stn_{FP,HT,KK,MP}_tens_lmax2_rep{01,02,03,04,05,06,07,08,09,10}.mat"
-# out_str = "O3D/O3D_STN/derivatives/connectome_tract/dwi/sub-{001,002,003,004}_dwi_var-dtidetlife_trial-{01,02,03,04,05,06,07,08,09,10}"
+# out_str = "O3D/O3D_STN/derivatives/connectome_tract/dwi/sub-{001,002,003,004}_dwi_var-dtidetlife_run-{01,02,03,04,05,06,07,08,09,10}"
 # copy(in_str, out_str, "mat2fiber")

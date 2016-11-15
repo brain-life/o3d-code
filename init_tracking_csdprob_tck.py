@@ -11,20 +11,20 @@ lifebid_root = "/N/dc2/projects/lifebid/"
 
 mapping = {}
 mapping["stn"] = {
-    "input": root + "O3D_STN/derivatives/tracking_csdprob_trk/sub-{}/dwi/sub-{}_dwi_var-csdprob-trial-{}_tract.trk",
-    "output": root + "O3D_STN/derivatives/tracking_csdprob_tck/sub-{}/dwi/sub-{}_dwi_var-csdprob-trial-{}_tract.tck",
+    "input": root + "O3D_STN/derivatives/tracking_csdprob_trk/sub-{}/dwi/sub-{}_dwi_var-csdprob-run-{}_tract.trk",
+    "output": root + "O3D_STN/derivatives/tracking_csdprob_tck/sub-{}/dwi/sub-{}_dwi_var-csdprob-run-{}_tract.tck",
     "anatomy": lifebid_root + "code/ccaiafa/Caiafa_Pestilli_paper2015/paper_datasets/STN/sub-{}/dwi/run01_fliprot_aligned_trilin.nii.gz",
 }
 
 mapping["hcp3t"] = {
-    "input": root + "O3D_HCP3T/derivatives/tracking_csdprob_trk/sub-{}/dwi/sub-{}_dwi_var-csdprob-trial-{}_tract.trk",
-    "output": root + "O3D_HCP3T/derivatives/tracking_csdprob_tck/sub-{}/dwi/sub-{}_dwi_var-csdprob-trial-{}_tract.tck",
+    "input": root + "O3D_HCP3T/derivatives/tracking_csdprob_trk/sub-{}/dwi/sub-{}_dwi_var-csdprob-run-{}_tract.trk",
+    "output": root + "O3D_HCP3T/derivatives/tracking_csdprob_tck/sub-{}/dwi/sub-{}_dwi_var-csdprob-run-{}_tract.tck",
     "anatomy": lifebid_root + "code/ccaiafa/Caiafa_Pestilli_paper2015/paper_datasets/HCP3T/sub-{}/dwi/dwi_data_b2000_aligned_trilin.nii.gz",
 }
 
 mapping["hcp7t"] = {
-    "input": root + "O3D_HCP7T/derivatives/tracking_csdprob_trk/sub-{}/dwi/sub-{}_dwi_var-csdprob-trial-{}_tract.trk",
-    "output": root + "O3D_HCP7T/derivatives/tracking_csdprob_tck/sub-{}/dwi/sub-{}_dwi_var-csdprob-trial-{}_tract.tck",
+    "input": root + "O3D_HCP7T/derivatives/tracking_csdprob_trk/sub-{}/dwi/sub-{}_dwi_var-csdprob-run-{}_tract.trk",
+    "output": root + "O3D_HCP7T/derivatives/tracking_csdprob_tck/sub-{}/dwi/sub-{}_dwi_var-csdprob-run-{}_tract.tck",
     "anatomy": lifebid_root + "code/ccaiafa/Caiafa_Pestilli_paper2015/paper_datasets/HCP7T/sub-{}/dwi/data_b2000.nii.gz",
 }
 
