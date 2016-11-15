@@ -13,20 +13,20 @@ lifebid_root = "/N/dc2/projects/lifebid/"
 
 mapping = {}
 mapping["stn"] = {
-    "input": root + "O3D_STN/derivatives/dissection_afq_trk/sub-{}/dwi/sub-{}_dwi_DTI_variant_dtidetlife_trial-{}_tract_variant-afq_set-{}_track.trk",
-    "output": root + "O3D_STN/derivatives/dissection_afq_tck/sub-{}/dwi/sub-{}_dwi_DTI_variant_dtidetlife_trial-{}_tract_variant-afq_set-{}_track.tck",
+    "input": root + "O3D_STN/derivatives/dissection_afq_trk/sub-{}/dwi/sub-{}_dwi_DTI_var_dtidetlife_trial-{}_tract_var-afq_set-{}_track.trk",
+    "output": root + "O3D_STN/derivatives/dissection_afq_tck/sub-{}/dwi/sub-{}_dwi_DTI_var_dtidetlife_trial-{}_tract_var-afq_set-{}_track.tck",
     "anatomy": lifebid_root + "code/ccaiafa/Caiafa_Pestilli_paper2015/paper_datasets/STN/sub-{}/dwi/run01_fliprot_aligned_trilin.nii.gz",
 }
 
 mapping["hcp3t"] = {
-    "input": root + "O3D_STN/derivatives/dissection_afq_trk/sub-{}/dwi/sub-{}_dwi_DTI_variant_dtidetlife_trial-{}_tract_variant-afq_set-{}_track.trk",
-    "output": root + "O3D_STN/derivatives/dissection_afq_tck/sub-{}/dwi/sub-{}_dwi_DTI_variant_dtidetlife_trial-{}_tract_variant-afq_set-{}_track.tck",
+    "input": root + "O3D_STN/derivatives/dissection_afq_trk/sub-{}/dwi/sub-{}_dwi_DTI_var_dtidetlife_trial-{}_tract_var-afq_set-{}_track.trk",
+    "output": root + "O3D_STN/derivatives/dissection_afq_tck/sub-{}/dwi/sub-{}_dwi_DTI_var_dtidetlife_trial-{}_tract_var-afq_set-{}_track.tck",
     "anatomy": lifebid_root + "code/ccaiafa/Caiafa_Pestilli_paper2015/paper_datasets/HCP3T/sub-{}/dwi/dwi_data_b2000_aligned_trilin.nii.gz",
 }
 
 # mapping["hcp7t"] = {
-#     "input": root + "O3D_HCP7T/derivatives/tracking_csddet_trk/sub-{}/dwi/sub-{}_dwi_variant-csddet-trial-{}_tract.trk",
-#     "output": root + "O3D_HCP7T/derivatives/tracking_csddet_tck/sub-{}/dwi/sub-{}_dwi_variant-csddet-trial-{}_tract.tck",
+#     "input": root + "O3D_HCP7T/derivatives/tracking_csddet_trk/sub-{}/dwi/sub-{}_dwi_var-csddet-trial-{}_tract.trk",
+#     "output": root + "O3D_HCP7T/derivatives/tracking_csddet_tck/sub-{}/dwi/sub-{}_dwi_var-csddet-trial-{}_tract.tck",
 #     "anatomy": lifebid_root + "code/ccaiafa/Caiafa_Pestilli_paper2015/paper_datasets/HCP7T/sub-{}/dwi/data_b2000.nii.gz",
 # }
 

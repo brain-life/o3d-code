@@ -11,17 +11,17 @@ algs = [("tens", "dtidet", "lmax2"), ("detr", "csddet", "lmax8"), ("prob", "csdp
 mapping = {}
 mapping["stn"] = {
     "input": "/N/dc2/projects/lifebid/HCP/Brent/cogs610/reps_data/stn_{}_{}_{}_rep{}.mat",
-    "output": root + "O3D_STN/derivatives/connectome_tract/sub-{}/sub-{}_dwi_variant-{}life_trial-{}"
+    "output": root + "O3D_STN/derivatives/connectome_tract/sub-{}/sub-{}_dwi_var-{}life_trial-{}"
 }
 
 mapping["hcp3t"] = {
     "input": "/N/dc2/projects/lifebid/HCP/Brent/cogs610/reps_data/hcp_{}_{}_{}_rep{}.mat",
-    "output": root + "O3D_HCP3T/derivatives/connectome_tract/sub-{}/sub-{}_dwi_variant-{}life_trial-{}"
+    "output": root + "O3D_HCP3T/derivatives/connectome_tract/sub-{}/sub-{}_dwi_var-{}life_trial-{}"
 }
 
 mapping["hcp7t"] = {
     "input": "/N/dc2/projects/lifebid/HCP/Brent/cogs610/7t_reps_data/7t_{}_{}_{}_rep{}.mat",
-    "output": root + "O3D_HCP7T/derivatives/connectome_tract/sub-{}/sub-{}_dwi_variant-{}life_trial-{}"
+    "output": root + "O3D_HCP7T/derivatives/connectome_tract/sub-{}/sub-{}_dwi_var-{}life_trial-{}"
 }
 
 for a in algs:

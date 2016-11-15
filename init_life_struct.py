@@ -14,27 +14,27 @@ mapping["stn"] = {
     "dtidet_input": lifebid_root + "code/ccaiafa/Caiafa_Pestilli_paper2015/paper_datasets/STN/sub-{}/fe_structures/fe_structure_{}_96dirs_b2000_1p5iso_STC_run01_tensor__connNUM{}.mat",
     "csddet_input": lifebid_root + "code/ccaiafa/Caiafa_Pestilli_paper2015/paper_datasets/STN/sub-{}/fe_structures/fe_structure_{}_96dirs_b2000_1p5iso_STC_run01_SD_STREAM_lmax8_connNUM{}.mat",
     "csdprob_input": lifebid_root + "code/ccaiafa/Caiafa_Pestilli_paper2015/paper_datasets/STN/sub-{}/fe_structures/fe_structure_{}_96dirs_b2000_1p5iso_STC_run01_SD_PROB_lmax8_connNUM{}.mat",
-    "dtidet_output": root + "O3D_STN/derivatives/life_struct/sub-{}/dwi/sub-{}_dwi_variant-dtidetlife_trial-{}_life.mat",
-    "csddet_output": root + "O3D_STN/derivatives/life_struct/sub-{}/dwi/sub-{}_dwi_variant-csddetlife_trial-{}_life.mat",
-    "csdprob_output": root + "O3D_STN/derivatives/life_struct/sub-{}/dwi/sub-{}_dwi_variant-csdproblife_trial-{}_life.mat"
+    "dtidet_output": root + "O3D_STN/derivatives/life_struct/sub-{}/dwi/sub-{}_dwi_var-dtidetlife_trial-{}_life.mat",
+    "csddet_output": root + "O3D_STN/derivatives/life_struct/sub-{}/dwi/sub-{}_dwi_var-csddetlife_trial-{}_life.mat",
+    "csdprob_output": root + "O3D_STN/derivatives/life_struct/sub-{}/dwi/sub-{}_dwi_var-csdproblife_trial-{}_life.mat"
 }
 
 mapping["hcp3t"] = {
     "dtidet_input": lifebid_root + "code/ccaiafa/Caiafa_Pestilli_paper2015/paper_datasets/HCP3T/sub-{}/fe_structures/fe_structure_{}_STC_run01_tensor__connNUM{}.mat",
     "csddet_input": lifebid_root + "code/ccaiafa/Caiafa_Pestilli_paper2015/paper_datasets/HCP3T/sub-{}/fe_structures/fe_structure_{}_STC_run01_SD_STREAM_lmax8_connNUM{}.mat",
     "csdprob_input": lifebid_root + "code/ccaiafa/Caiafa_Pestilli_paper2015/paper_datasets/HCP3T/sub-{}/fe_structures/fe_structure_{}_STC_run01_SD_PROB_lmax8_connNUM{}.mat",
-    "dtidet_output": root + "O3D_HCP3T/derivatives/life_struct/sub-{}/dwi/sub-{}_dwi_variant-dtidetlife_trial-{}_life.mat",
-    "csddet_output": root + "O3D_HCP3T/derivatives/life_struct/sub-{}/dwi/sub-{}_dwi_variant-csddetlife_trial-{}_life.mat",
-    "csdprob_output": root + "O3D_HCP3T/derivatives/life_struct/sub-{}/dwi/sub-{}_dwi_variant-csdproblife_trial-{}_life.mat"
+    "dtidet_output": root + "O3D_HCP3T/derivatives/life_struct/sub-{}/dwi/sub-{}_dwi_var-dtidetlife_trial-{}_life.mat",
+    "csddet_output": root + "O3D_HCP3T/derivatives/life_struct/sub-{}/dwi/sub-{}_dwi_var-csddetlife_trial-{}_life.mat",
+    "csdprob_output": root + "O3D_HCP3T/derivatives/life_struct/sub-{}/dwi/sub-{}_dwi_var-csdproblife_trial-{}_life.mat"
 }
 
 mapping["hcp7t"] = {
     "dtidet_input": lifebid_root + "code/ccaiafa/Caiafa_Pestilli_paper2015/paper_datasets/HCP7T/sub-{}/fe_structures/fe_structure_{}_STC_run01_tensor__connNUM{}.mat",
     "csddet_input": lifebid_root + "code/ccaiafa/Caiafa_Pestilli_paper2015/paper_datasets/HCP7T/sub-{}/fe_structures/fe_structure_{}_STC_run01_SD_STREAM_lmax8_connNUM{}.mat",
     "csdprob_input": lifebid_root + "code/ccaiafa/Caiafa_Pestilli_paper2015/paper_datasets/HCP7T/sub-{}/fe_structures/fe_structure_{}_STC_run01_SD_PROB_lmax8_connNUM{}.mat",
-    "dtidet_output": root + "O3D_HCP7T/derivatives/life_struct/sub-{}/dwi/sub-{}_dwi_variant-dtidetlife_trial-{}_life.mat",
-    "csddet_output": root + "O3D_HCP7T/derivatives/life_struct/sub-{}/dwi/sub-{}_dwi_variant-csddetlife_trial-{}_life.mat",
-    "csdprob_output": root + "O3D_HCP7T/derivatives/life_struct/sub-{}/dwi/sub-{}_dwi_variant-csdproblife_trial-{}_life.mat"
+    "dtidet_output": root + "O3D_HCP7T/derivatives/life_struct/sub-{}/dwi/sub-{}_dwi_var-dtidetlife_trial-{}_life.mat",
+    "csddet_output": root + "O3D_HCP7T/derivatives/life_struct/sub-{}/dwi/sub-{}_dwi_var-csddetlife_trial-{}_life.mat",
+    "csdprob_output": root + "O3D_HCP7T/derivatives/life_struct/sub-{}/dwi/sub-{}_dwi_var-csdproblife_trial-{}_life.mat"
 }
 
 # Need script to compute AFTER-LIFE trk files, then run that here as well.

@@ -6,8 +6,8 @@ from subprocess import call
 
 
 def convert(input, name, dummy = False, validate = False, touch = False):
-    new_fiber_count = name + '_variant-fcount_connectome.csv'
-    new_fiber_density = name + '_variant-fdensity_connectome.csv'
+    new_fiber_count = name + '_var-fcount_connectome.csv'
+    new_fiber_density = name + '_var-fdensity_connectome.csv'
 
     if not dummy and not touch:
         # Load file
