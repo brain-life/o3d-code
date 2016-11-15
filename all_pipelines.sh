@@ -1,3 +1,12 @@
+#!/bin/bash
+
+#PBS -k o 
+#PBS -l nodes=1:ppn=2,mem=4000mb,walltime=8:00:00 
+#PBS -M pavesani@iu.edu
+#PBS -m abe
+#PBS -N o3d-gen-sub
+#PBS -j oe
+
 dataset=$1
 subject=$2
 root=$3
@@ -12,5 +21,4 @@ wait
 python init_tracking_csddet_tck.py $dataset $subject $root &
 python init_tracking_csdprob_tck.py $dataset $subject $root &
 python init_tracking_dtidet_tck.py $dataset $subject $root &
-
 wait
