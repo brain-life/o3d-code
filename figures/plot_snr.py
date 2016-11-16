@@ -85,13 +85,14 @@ def plot_one_snr(snr_file, snr_out):
     plot_snr(snr[3], snr_bin, label[tag, 3], line_style[3], color[tag])
 
     plt.xlim([0, 150])
+    plt.ylim([0, 0.07])
     plt.xlabel('snr')
     plt.ylabel('')
     plt.legend(loc='upper right')
     plt.title(tag)
 
     if snr_out:
-        plt.savefig(snr_out, bbox_inches='tight')
+        plt.savefig(snr_out, bbox_inches='tight', magnification=10)
     else:
         plt.show()
 
@@ -114,18 +115,19 @@ def plot_all_snr(snr_file1, snr_file2, snr_file3, snr_out):
     snr2 = np.hstack(snr2)
     snr3 = np.hstack(snr3)
 
-    plot_snr(snr1, snr_bin, 'STN',  line_style[0], 'r--', 4)
-    plot_snr(snr2, snr_bin, 'HCP3', line_style[0], 'b--', 4)
-    plot_snr(snr3, snr_bin, 'HCP7', line_style[0], 'g--', 4)
+    plot_snr(snr1, snr_bin, 'STN',  line_style[0], 'r--')
+    plot_snr(snr2, snr_bin, 'HCP3', line_style[0], 'b--')
+    plot_snr(snr3, snr_bin, 'HCP7', line_style[0], 'g--')
 
     plt.xlim([0, 150])
+    plt.ylim([0, 0.07])
     plt.xlabel('snr')
     plt.ylabel('')
     plt.legend(loc='upper right')
     plt.title('Distribution of snr')
 
     if snr_out:
-        plt.savefig(snr_out, bbox_inches='tight')
+        plt.savefig(snr_out, bbox_inches='tight', magnification=10)
     else:
         plt.show()
 
