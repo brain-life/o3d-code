@@ -1,0 +1,39 @@
+\documentclass{article}
+
+\usepackage{graphicx}
+\usepackage{epstopdf}
+\usepackage{multirow}
+\graphicspath{{src/response/}}
+\newcommand*\rot[1]{\rotatebox[origin=ct]{90}{#1}}
+
+\begin{document}
+
+\begin{figure}[h]
+  \vspace*{-2.0cm}
+  \hspace*{-2cm}
+  \centering
+  \begin{tabular}{cccc}
+    \includegraphics[width=3.5cm]{sub-001_response} &
+    \includegraphics[width=3.5cm]{sub-002_response} &
+    \includegraphics[width=3.5cm]{sub-003_response} &
+    \includegraphics[width=3.5cm]{sub-004_response} \\
+    sub-001 & sub-002 & sub-003 & sub-004  \\
+    \includegraphics[width=3.5cm]{sub-005_response} &
+    \includegraphics[width=3.5cm]{sub-006_response} &
+    \includegraphics[width=3.5cm]{sub-007_response} &
+    \includegraphics[width=3.5cm]{sub-008_response} \\
+    sub-005& sub-006 & sub-007 & sub-008  \\
+    \includegraphics[width=3.5cm]{sub-009_response} &
+    \includegraphics[width=3.5cm]{sub-010_response} &
+    \includegraphics[width=3.5cm]{sub-011_response} &
+    \includegraphics[width=3.5cm]{sub-012_response} \\
+    sub-009 & sub-010 & sub-011 & sub-012 
+
+    %(c) third & (d) fourth \\[6pt]
+    %\multicolumn{2}{c}{\includegraphics[width=65mm]{it} }\\
+    %\multicolumn{2}{c}{(e) fifth}
+  \end{tabular}
+  \caption{Figure \#. The response functions.}
+\end{figure}
+
+\end{document}
