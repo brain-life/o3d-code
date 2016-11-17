@@ -62,6 +62,7 @@ mapping["hcp3t"] = {
 
 mapping["hcp7t"] = {
     "bval_in": lifebid_root + "code/ccaiafa/Caiafa_Pestilli_paper2015/paper_datasets/HCP7T/sub-{}/dwi/data_b2000",
+    "mask": lifebid_root + "HCP7/{}/diffusion_data/nodif_brain_mask.nii.gz",
     "input": [
         lifebid_root + "HCP7/{}/anatomy/T1w_acpc_dc_restore.nii.gz",
         lifebid_root + "HCP7/{}/anatomy/brainmask_fs.nii.gz",
@@ -97,6 +98,7 @@ bval_out = root + dataset_root[dataset] + out_dwi.format(subject) + "sub-{}_b-20
 
 copier.copy(bval_in, bval_out, action = "copy", dummy = False)
 if dataset == "hcp7t":
+    mask = mapping[dataset]["mask"].format(name)
     copier.copy(bvec_in, bvec_out, anatomy = mask, action = "mask", dummy = False)
 else:
     copier.copy(bvec_in, bvec_out, action = "copy", dummy = False)

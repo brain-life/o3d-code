@@ -46,7 +46,7 @@ mapping["hcp3t"] = {
 mapping["hcp7t"] = {
     "input_dir": "/N/dc2/projects/lifebid/HCP7/{}/fibers/",
     "input_files": [
-        "data-b2000_wm.mif",
+        "data_b2000_wm.mif",
         "data_b2000_fa.mif",
         "data_b2000_dt.mif",
         "data_b2000_lmax8.mif",

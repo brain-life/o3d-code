@@ -20,7 +20,7 @@ mapping["hcp3t"] = {
 }
 
 mapping["hcp7t"] = {
-    "input": "/N/dc2/projects/lifebid/HCP/Brent/cogs610/7t_reps_data/7t_{}_{}_{}_rep{}.mat",
+    "input": "/N/dc2/projects/lifebid/HCP/Brent/cogs610/7t_reps_data/7T_{}_{}_{}_rep{}.mat",
     "output": root + "O3D_HCP7T/derivatives/connectome_tract/sub-{}/sub-{}_dwi_var-{}life_run-{}"
 }
 
