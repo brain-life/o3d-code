@@ -63,33 +63,33 @@ def main(dir_root):
 
     data_dir['tracking_dtidet_trk'] = ['dwi']
     data_file['tracking_dtidet_trk', 'dwi'] = \
-        ['_b-2000_dwi_ODF_var-dtidet_run0{}_tract.trk'.format(i+1) for i in range(9)] + ['_b-2000_dwi_ODF_var-dtidet_run10_tract.trk'] +\
-        ['_b-2000_dwi_ODF_var-dtidetlife_run0{}_tract.trk'.format(i+1) for i in range(9)] + ['_b-2000_dwi_ODF_var-dtidetlife_run10_tract.trk']
+        ['_b-2000_dwi_ODF_var-dtidet_run-0{}_tract.trk'.format(i+1) for i in range(9)] + ['_b-2000_dwi_ODF_var-dtidet_run-10_tract.trk'] +\
+        ['_b-2000_dwi_ODF_var-dtidetlife_run-0{}_tract.trk'.format(i+1) for i in range(9)] + ['_b-2000_dwi_ODF_var-dtidetlife_run-10_tract.trk']
 
     data_dir['tracking_csddet_trk'] = ['dwi']
     data_file['tracking_csddet_trk', 'dwi'] = \
-        ['_b-2000_dwi_ODF_var-csddet_run0{}_tract.trk'.format(i+1) for i in range(9)] + ['_b-2000_dwi_ODF_var-csddet_run10_tract.trk'] +\
-        ['_b-2000_dwi_ODF_var-csddetlife_run0{}_tract.trk'.format(i+1) for i in range(9)] + ['_b-2000_dwi_ODF_var-csddetlife_run10_tract.trk']
+        ['_b-2000_dwi_ODF_var-csddet_run-0{}_tract.trk'.format(i+1) for i in range(9)] + ['_b-2000_dwi_ODF_var-csddet_run-10_tract.trk'] +\
+        ['_b-2000_dwi_ODF_var-csddetlife_run-0{}_tract.trk'.format(i+1) for i in range(9)] + ['_b-2000_dwi_ODF_var-csddetlife_run-10_tract.trk']
 
     data_dir['tracking_csdprob_trk'] = ['dwi']
     data_file['tracking_csdprob_trk', 'dwi'] = \
-        ['_b-2000_dwi_ODF_var-csdprob_run0{}_tract.trk'.format(i+1) for i in range(9)] + ['_b-2000_dwi_ODF_var-csdprob_run10_tract.trk'] +\
-        ['_b-2000_dwi_ODF_var-csdproblife_run0{}_tract.trk'.format(i+1) for i in range(9)] + ['_b-2000_dwi_ODF_var-csdproblife_run10_tract.trk']
+        ['_b-2000_dwi_ODF_var-csdprob_run-0{}_tract.trk'.format(i+1) for i in range(9)] + ['_b-2000_dwi_ODF_var-csdprob_run-10_tract.trk'] +\
+        ['_b-2000_dwi_ODF_var-csdproblife_run-0{}_tract.trk'.format(i+1) for i in range(9)] + ['_b-2000_dwi_ODF_var-csdproblife_run-10_tract.trk']
 
     data_dir['tracking_dtidet_tck'] = ['dwi']
     data_file['tracking_dtidet_tck', 'dwi'] = \
-        ['_b-2000_dwi_ODF_var-dtidet_run0{}_tract.tck'.format(i+1) for i in range(9)] + ['_b-2000_dwi_ODF_var-dtidet_run10_tract.tck'] +\
-        ['_b-2000_dwi_ODF_var-dtidetlife_run0{}_tract.tck'.format(i+1) for i in range(9)] + ['_b-2000_dwi_ODF_var-dtidetlife_run10_tract.tck']
+        ['_b-2000_dwi_ODF_var-dtidet_run-0{}_tract.tck'.format(i+1) for i in range(9)] + ['_b-2000_dwi_ODF_var-dtidet_run-10_tract.tck'] +\
+        ['_b-2000_dwi_ODF_var-dtidetlife_run-0{}_tract.tck'.format(i+1) for i in range(9)] + ['_b-2000_dwi_ODF_var-dtidetlife_run-10_tract.tck']
 
     data_dir['tracking_csddet_tck'] = ['dwi']
     data_file['tracking_csddet_tck', 'dwi'] = \
-        ['_b-2000_dwi_ODF_var-csddet_run0{}_tract.tck'.format(i+1) for i in range(9)] + ['_b-2000_dwi_ODF_var-csddet_run10_tract.tck'] +\
-        ['_b-2000_dwi_ODF_var-csddetlife_run0{}_tract.tck'.format(i+1) for i in range(9)] + ['_b-2000_dwi_ODF_var-csddetlife_run10_tract.tck']
+        ['_b-2000_dwi_ODF_var-csddet_run-0{}_tract.tck'.format(i+1) for i in range(9)] + ['_b-2000_dwi_ODF_var-csddet_run-10_tract.tck'] +\
+        ['_b-2000_dwi_ODF_var-csddetlife_run-0{}_tract.tck'.format(i+1) for i in range(9)] + ['_b-2000_dwi_ODF_var-csddetlife_run-10_tract.tck']
 
     data_dir['tracking_csdprob_tck'] = ['dwi']
     data_file['tracking_csdprob_tck', 'dwi'] = \
-        ['_b-2000_dwi_ODF_var-csdprob_run0{}_tract.tck'.format(i+1) for i in range(9)] + ['_b-2000_dwi_ODF_var-csdprob_run10_tract.tck'] +\
-        ['_b-2000_dwi_ODF_var-csdproblife_run0{}_tract.tck'.format(i+1) for i in range(9)] + ['_b-2000_dwi_ODF_var-csdproblife_run10_tract.tck']
+        ['_b-2000_dwi_ODF_var-csdprob_run-0{}_tract.tck'.format(i+1) for i in range(9)] + ['_b-2000_dwi_ODF_var-csdprob_run-10_tract.tck'] +\
+        ['_b-2000_dwi_ODF_var-csdproblife_run-0{}_tract.tck'.format(i+1) for i in range(9)] + ['_b-2000_dwi_ODF_var-csdproblife_run-10_tract.tck']
 
     data_dir['life_struct'] = ['dwi']
     data_file['life_struct', 'dwi'] = []
