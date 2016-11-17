@@ -37,7 +37,7 @@ mapping["hcp3t"] = {
         "dwi_data_b2000_aligned_trilin_fa.mif",
         "dwi_data_b2000_aligned_trilin_dt.mif",
         "dwi_data_b2000_aligned_trilin_lmax8.mif",
-        "dwi_data_b2000_aligend_trilin_ev.mif", # ?
+        "dwi_data_b2000_aligned_trilin_ev.mif", # ?
         "dwi_data_b2000_aligned_trilin_response.txt"
     ],
     "output": root + "O3D_HCP3T/derivatives/recon_models/sub-{}/"

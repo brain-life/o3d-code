@@ -55,7 +55,7 @@ mapping["hcp3t"] = {
     "output": [
         root + "O3D_HCP3T/derivatives/preprocess/sub-{}/anat/sub-{}_T1w.nii.gz",
         root + "O3D_HCP3T/derivatives/preprocess/sub-{}/anat/sub-{}_T1w_brainmask.nii.gz",
-        root + dataset_root[dataset] + out_dwi + "sub-{}/dwi/sub-{}_b-2000_dwi.nii.gz",
+        root + dataset_root[dataset] + out_dwi + "sub-{}_b-2000_dwi.nii.gz",
         root + dataset_root[dataset] + out_dwi + "sub-{}_dwi_brainmask.nii.gz"
     ]
 }
