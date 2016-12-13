@@ -65,7 +65,7 @@ masks = [
 
 for i in range(len(files)):
     in_str = mapping[dataset]["input_dir"].format(name) + mapping[dataset]["input_files"][i]
-    out_str = mapping[dataset]["output"].format(subject) + files[i]
+    out_str = mapping[dataset]["output"].format(subject) + files[i].format(subject)
     action = "copy"
     if (mapping[dataset]["input_files"][i][:-3] == "mif"):
         action = "mrconvert"
