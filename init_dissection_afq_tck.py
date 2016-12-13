@@ -8,20 +8,17 @@ repititions = ['0' + `i` for i in range(1,10)] + ["10"]
 rep_str = copier.arrToInterpolateString(repititions)
 tracts = ['ATRl', 'ATRr', 'CSTl', 'CSTr', 'CCgl', 'CCgr', 'CHyl', 'CHyr', 'FMJ', 'FMI', 'IFOFl', 'IFOFr', 'ILFl', 'ILFr', 'SLFl', 'SLFr', 'UFl', 'UFr', 'ARCl', 'ARCr']
 tract_str = copier.arrToInterpolateString(tracts)
-
-lifebid_root = "/N/dc2/projects/lifebid/"
+anatomy = copier.getAnatomy(root, dataset, subject)
 
 mapping = {}
 mapping["stn"] = {
     "input": root + "O3D_STN/derivatives/dissection_afq_trk/sub-{}/dwi/sub-{}_dwi_DTI_var_dtidetlife_run-{}_tract_var-afq_set-{}_track.trk",
-    "output": root + "O3D_STN/derivatives/dissection_afq_tck/sub-{}/dwi/sub-{}_dwi_DTI_var_dtidetlife_run-{}_tract_var-afq_set-{}_track.tck",
-    "anatomy": lifebid_root + "code/ccaiafa/Caiafa_Pestilli_paper2015/paper_datasets/STN/sub-{}/dwi/run01_fliprot_aligned_trilin.nii.gz",
+    "output": root + "O3D_STN/derivatives/dissection_afq_tck/sub-{}/dwi/sub-{}_dwi_DTI_var_dtidetlife_run-{}_tract_var-afq_set-{}_track.tck"
 }
 
 mapping["hcp3t"] = {
     "input": root + "O3D_STN/derivatives/dissection_afq_trk/sub-{}/dwi/sub-{}_dwi_DTI_var_dtidetlife_run-{}_tract_var-afq_set-{}_track.trk",
-    "output": root + "O3D_STN/derivatives/dissection_afq_tck/sub-{}/dwi/sub-{}_dwi_DTI_var_dtidetlife_run-{}_tract_var-afq_set-{}_track.tck",
-    "anatomy": lifebid_root + "code/ccaiafa/Caiafa_Pestilli_paper2015/paper_datasets/HCP3T/sub-{}/dwi/dwi_data_b2000_aligned_trilin.nii.gz",
+    "output": root + "O3D_STN/derivatives/dissection_afq_tck/sub-{}/dwi/sub-{}_dwi_DTI_var_dtidetlife_run-{}_tract_var-afq_set-{}_track.tck"
 }
 
 # mapping["hcp7t"] = {
@@ -36,5 +33,4 @@ mapping["hcp3t"] = {
 
 in_str = mapping[dataset]["input"].format(subject, subject, rep_str, tract_str)
 out_str = mapping[dataset]["output"].format(subject, subject, rep_str, tract_str)
-anatomy = mapping[dataset]["anatomy"].format(name)
 copier.copy(in_str, out_str, anatomy = anatomy, action = "trk2tck", dummy = False)

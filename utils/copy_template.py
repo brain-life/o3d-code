@@ -70,6 +70,13 @@ def parseCommandLine(argv):
         sys.exit()
     return (dataset, subject, root)
 
+def getRoot():
+    return "/N/dc2/projects/lifebid/"
+
+def getAnatomy(root, dataset, sub):
+    d = dataset.upper()
+    return root + d + '/derivatives/preprocess/sub-{}/dwi/sub-{}_b-2000_dwi.nii.gz'.format(sub, sub)
+
 def mri_convert(infile, outfile, dummy = True):
     if dummy:
         print "call(['module', 'load', 'freesurfer'])"

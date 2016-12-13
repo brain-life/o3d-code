@@ -6,26 +6,24 @@ print("Warning, this can only be run after init_tracking_dtidet_trk.py has been 
 name = copier.subjectNameFromNumber(subject)
 repititions = ['0' + `i` for i in range(1,10)] + ["10"]
 rep_str = copier.arrToInterpolateString(repititions)
+anatomy = copier.getAnatomy(root, dataset, subject)
 
 lifebid_root = "/N/dc2/projects/lifebid/"
 
 mapping = {}
 mapping["stn"] = {
     "input": root + "O3D_STN/derivatives/tracking_dtidet_trk/sub-{}/dwi/sub-{}_dwi_var-dtidet-run-{}_tract.trk",
-    "output": root + "O3D_STN/derivatives/tracking_dtidet_tck/sub-{}/dwi/sub-{}_dwi_var-dtidet_run-{}_tract.tck",
-    "anatomy": lifebid_root + "code/ccaiafa/Caiafa_Pestilli_paper2015/paper_datasets/STN/sub-{}/dwi/run01_fliprot_aligned_trilin.nii.gz",
+    "output": root + "O3D_STN/derivatives/tracking_dtidet_tck/sub-{}/dwi/sub-{}_dwi_var-dtidet_run-{}_tract.tck"
 }
 
 mapping["hcp3t"] = {
     "input": root + "O3D_HCP3T/derivatives/tracking_dtidet_trk/sub-{}/dwi/sub-{}_dwi_var-dtidet-run-{}_tract.trk",
-    "output": root + "O3D_HCP3T/derivatives/tracking_dtidet_tck/sub-{}/dwi/sub-{}_dwi_var-dtidet_run-{}_tract.tck",
-    "anatomy": lifebid_root + "code/ccaiafa/Caiafa_Pestilli_paper2015/paper_datasets/HCP3T/sub-{}/dwi/dwi_data_b2000_aligned_trilin.nii.gz",
+    "output": root + "O3D_HCP3T/derivatives/tracking_dtidet_tck/sub-{}/dwi/sub-{}_dwi_var-dtidet_run-{}_tract.tck"
 }
 
 mapping["hcp7t"] = {
     "input": root + "O3D_HCP7T/derivatives/tracking_dtidet_trk/sub-{}/dwi/sub-{}_dwi_var-dtidet-run-{}_tract.trk",
-    "output": root + "O3D_HCP7T/derivatives/tracking_dtidet_tck/sub-{}/dwi/sub-{}_dwi_var-dtidet_run-{}_tract.tck",
-    "anatomy": lifebid_root + "code/ccaiafa/Caiafa_Pestilli_paper2015/paper_datasets/HCP7T/sub-{}/dwi/data_b2000.nii.gz",
+    "output": root + "O3D_HCP7T/derivatives/tracking_dtidet_tck/sub-{}/dwi/sub-{}_dwi_var-dtidet_run-{}_tract.tck"
 }
 
 # Need script to compute AFTER-LIFE trk files, then run that here as well.
@@ -34,5 +32,4 @@ mapping["hcp7t"] = {
 
 in_str = mapping[dataset]["input"].format(subject, subject, rep_str)
 out_str = mapping[dataset]["output"].format(subject, subject, rep_str)
-anatomy = mapping[dataset]["anatomy"].format(name)
 copier.copy(in_str, out_str, anatomy = anatomy, action = "trk2tck", dummy = False)
