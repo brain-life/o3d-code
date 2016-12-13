@@ -45,8 +45,8 @@ def main(dir_root):
                             '_T1w_dtissue.nii.gz']
     data_file['preprocess', 'dwi'] = ['_b-2000_dwi.nii.gz',
                            '_dwi_brainmask.nii.gz',
-                           '_b-2000_dwi.bval',
-                           '_b-2000_dwi_bvec']
+                           '_b-2000_dwi.bvals',
+                           '_b-2000_dwi_bvecs']
 
     data_dir['freesurfer'] = ['anat']
     data_file['freesurfer', 'anat'] = ['_parc-wm_T1w.nii.gz',
