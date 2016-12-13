@@ -9,9 +9,9 @@ def main(dir_root):
     dataset = ['O3D_STN', 'O3D_HCP3T', 'O3D_HCP7T']
 
     subjects = {}
-    subjects['O3D_STN'] = ['001', '002', '003', '004']
-    subjects['O3D_HCP3T'] = ['005', '006', '007', '008']
-    subjects['O3D_HCP7T'] = ['009', '010', '011', '012']
+    subjects['O3D_STN'] = ['0001', '0002', '0003', '0004']
+    subjects['O3D_HCP3T'] = ['0005', '0006', '0007', '0008']
+    subjects['O3D_HCP7T'] = ['0009', '0010', '0011', '0012']
 
     files = ['README',
              'CHANGES',
