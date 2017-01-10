@@ -5,6 +5,7 @@ import re
 import itertools
 import tractconverter
 from tractconverter import FORMATS
+import os
 
 dummy = False
 validate = False
@@ -88,10 +89,10 @@ def mri_convert(infile, outfile, dummy = True):
 def mrconvert(infile, outfile, dummy = True):
     if dummy:
         print "call(['module', 'load', 'mrtrix'])"
-        print "mrconvert " + infile + " " + outfile
+        print "mrconvert -force" + infile + " " + outfile
     else:
         # call(['module', 'load', 'mrtrix'])
-        call(['mrconvert', infile, outfile])
+        call(['mrconvert', '-force', infile, outfile])
 
 def mask(infile, outfile, mask, dummy = True):
     if dummy:
@@ -135,12 +136,23 @@ def tck2trk(infile, outfile, anatomy, dummy = True):
         output = trk_format.create(outfile, input.hdr, anatomy)
         tractconverter.convert(input, output)
 
+def createFolder(path):
+    end = path.split('/')[-1]
+    path = path.replace('/' + end, '')
+    if os.path.isdir(path):
+        return
+    else:
+        os.makedirs(path)
+
 # in_inter takes an interpolatable file path for example:
 # in_inter = "/path/to/{sub1,sub2,sub3,sub4}/sub/{file1,file2,file3}.mat"
 def copy(in_inter, out_inter, action = "copy", dummy = True, anatomy = ""):
     all_in = generateAllStrings(in_inter)
     all_out = generateAllStrings(out_inter)
     for i in range(len(all_in)):
+        # check if output folder exists.
+        # if output folder does not exist, create it
+
         if (action == "mat2fiber"):
             o3d_bids_init_connectome_mat2csv.convert(all_in[i], all_out[i], dummy=dummy)
         elif (action == "mri_convert"):

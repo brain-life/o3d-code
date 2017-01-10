@@ -54,12 +54,12 @@ def main(dir_root):
                                        '_ribbon_T1w.nii.gz']
 
     data_dir['recon_models'] = ['anat', 'dwi']
-    data_file['recon_models', 'anat'] = ['_T1w_wmmask.nii.gz']
-    data_file['recon_models', 'dwi'] = ['_dwi_b-2000_dwi_FA.nii.gz',
-                                        '_dwi_b-2000_dwi_MD.nii.gz',
-                                        '_dwi_b-2000_dwi_DTI.nii.gz',
-                                        '_dwi_b-2000_dwi_ODF.nii.gz',
-                                        '_dwi_b-2000_dwi_dwiresponse.txt']
+    data_file['recon_models', 'anat'] = ['_T1_wmmask.nii.gz']
+    data_file['recon_models', 'dwi'] = ['_b-2000_dwi_FA.nii.gz',
+                                        '_b-2000_dwi_MD.nii.gz',
+                                        '_b-2000_dwi_DTI.nii.gz',
+                                        '_b-2000_dwi_ODF.nii.gz',
+                                        '_b-2000_dwi_dwiresponse.txt']
 
     data_dir['tracking_dtidet_trk'] = ['dwi']
     data_file['tracking_dtidet_trk', 'dwi'] = \
