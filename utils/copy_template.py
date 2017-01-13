@@ -94,6 +94,12 @@ def mrconvert(infile, outfile, dummy = True):
         # call(['module', 'load', 'mrtrix'])
         call(['mrconvert', '-force', infile, outfile])
 
+def rotate(infile, outfile, dummy = True):
+    if dummy:
+        print 'rotate command print not implemented'
+    else:
+        call(['mri_convert', '-iid', '1', '0', '0', infile, outfile])
+
 def mask(infile, outfile, mask, dummy = True):
     if dummy:
         print ""
@@ -169,6 +175,8 @@ def copy(in_inter, out_inter, action = "copy", dummy = True, anatomy = ""):
             tck2trk(all_in[i], all_out[i], dummy = dummy, anatomy = anatomy)
         elif (action == "mask"):
             mask(all_in[i], all_out[i], dummy = dummy, mask = anatomy)
+        elif (action == "rotate"):
+            rotate(all_in[i], all_out[i], dummy = dummy)
         elif (action == "copy"):
             if dummy:
                 print "cp " + all_in[i] + " >> " + all_out[i]

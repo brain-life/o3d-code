@@ -15,7 +15,7 @@ name = copier.subjectNameFromNumber(subject)
 algs = [("tens", "dtidet", "lmax2"), ("detr", "csddet", "lmax8"), ("prob", "csdprob", "lmax8")]
 
 def getSublong(num_str):
-    sublong = {"001": "pestilli_test", "002": "takemura", "003": "knk", "004": "lmperry"}
+    sublong = {"0001": "pestilli_test", "0002": "takemura", "0003": "knk", "0004": "lmperry"}
     if num_str in sublong:
         return sublong[num_str]
     else:
@@ -85,11 +85,23 @@ params = mapping[dataset]["params"]
 outputs = mapping[dataset]["output"]
 copier.copy(inputs[0].format(params[0]), outputs[0].format(subject, subject), dummy = False)
 action = "copy"
-if inputs[1][:-3] == "mgz":
+if inputs[1][-3:] == "mgz":
     action = "mri_convert"
-copier.copy(inputs[1].format(params[1]), outputs[1].format(subject, subject), action = action, dummy = False)
-copier.copy(inputs[2].format(params[2]), outputs[2].format(subject, subject), dummy = False)
-copier.copy(inputs[3].format(params[3]), outputs[3].format(subject, subject), dummy = False)
+
+out_str = outputs[1].format(subject, subject)
+copier.copy(inputs[1].format(params[1]), out_str, action = action, dummy = False)
+if dataset != "hcp7t":
+    copier.copy(out_str, out_str, action = "rotate", dummy = False)
+
+out_str = outputs[2].format(subject, subject)
+copier.copy(inputs[2].format(params[2]), out_str, dummy = False)
+if dataset != "hcp7t":
+    copier.copy(out_str, out_str, action = "rotate", dummy = False)
+
+out_str = outputs[3].format(subject, subject)
+copier.copy(inputs[3].format(params[3]), out_str, dummy = False)
+if dataset != "hcp7t":
+    copier.copy(out_str, out_str, action = "rotate", dummy = False)
 
 bvec_in = mapping[dataset]["bval_in"].format(name) + ".bvecs"
 bval_in = mapping[dataset]["bval_in"].format(name) + ".bvals"
