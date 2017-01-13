@@ -143,8 +143,6 @@ def tck2trk(infile, outfile, anatomy, dummy = True):
         tractconverter.convert(input, output)
 
 def createFolder(path):
-    end = path.split('/')[-1]
-    path = path.replace('/' + end, '')
     if os.path.isdir(path):
         return
     else:
@@ -158,6 +156,8 @@ def copy(in_inter, out_inter, action = "copy", dummy = True, anatomy = ""):
     for i in range(len(all_in)):
         # check if output folder exists.
         # if output folder does not exist, create it
+        path = '/'.join(all_out[i].split('/')[:-1])
+        createFolder(path)
 
         if (action == "mat2fiber"):
             o3d_bids_init_connectome_mat2csv.convert(all_in[i], all_out[i], dummy=dummy)
