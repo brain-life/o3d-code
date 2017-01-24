@@ -1,10 +1,17 @@
 #!/usr/bin/env python
 
 import sys
-from os.path import join
+from os.path import join, isfile
 from subprocess import call
 
-def main(dir_root):
+def checkExists(path):
+    if isfile(path):
+        return 0
+    else:
+        print "Missing: " + path
+
+
+def main(dir_root, ss, ds):
 
     dataset = ['O3D_STN', 'O3D_HCP3T', 'O3D_HCP7T']
 
@@ -112,31 +119,29 @@ def main(dir_root):
         ['_b-2000_dwi_DTI_var-csdproblife_run-{}_tract_connectome.csv'.format(i+1) for i in range(10)]
 
 
-
-    for ds in dataset:
-        dir_0 = join(dir_root, ds)
-        call(['mkdir', dir_0])
-        for f in files:
-            filename = join(dir_0, f)
-            call(["touch", filename])
-        dir_1 = join(dir_0, derivatives)
-        call(["mkdir", dir_1])
-        for pl in pipelines:
-            dir_2 = join(dir_1, pl)
-            call(["mkdir", dir_2])
-            call(["touch", join(dir_2, readme)])
-            for  ss in subjects[ds]:
-                dir_3 = join(dir_2, 'sub-' + ss)
-                call(['mkdir', dir_3])
-                for dd in data_dir[pl]:
-                    dir_4 = join(dir_3, dd)
-                    call(["mkdir", dir_4])
-                    for df in data_file[pl, dd]:
-                        filename = join(dir_4, 'sub-' + ss + df)
-                        call(["touch", filename])
+    dir_0 = join(dir_root, ds)
+    for f in files:
+        filename = join(dir_0, f)
+        checkExists(filename)
+    dir_1 = join(dir_0, derivatives)
+    for pl in pipelines:
+        dir_2 = join(dir_1, pl)
+        dir_3 = join(dir_2, 'sub-' + ss)
+        for dd in data_dir[pl]:
+            dir_4 = join(dir_3, dd)
+            for df in data_file[pl, dd]:
+                filename = join(dir_4, 'sub-' + ss + df)
+                checkExists(filename)
 
 if __name__ == "__main__":
     root = '.'
     if len(sys.argv) > 1:
         root = sys.argv[1]
-    main(root)
+    sub = 'all'
+    if len(sys.argv) > 2:
+        sub = sys.argv[2]
+    dat = 'all'
+    if len(sys.argv) > 3:
+        dat = sys.argv[3]
+
+    main(root, sub, dat)
