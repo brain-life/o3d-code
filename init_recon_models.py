@@ -73,7 +73,7 @@ for i in range(len(files)):
     copier.copy(in_str, out_str, action = action, dummy = False)
 
     if (dataset != "hcp7t" and files[i][-7:] == ".nii.gz"):
-        copier.rotate(out_str, out_str, dummy = False)
+        copier.copy(out_str, out_str, action = 'rotate', dummy = False)
 
     if (dataset == "hcp7t" and files[i][-10:] in masks):
         mask = mapping[dataset]["mask"].format(name)
