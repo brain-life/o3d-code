@@ -75,7 +75,9 @@ def getRoot():
     return "/N/dc2/projects/lifebid/"
 
 def getAnatomy(root, dataset, sub):
-    d = "O3D_" + dataset.upper()
+    d = dataset.upper()
+    if d[0:3] != "O3D":
+        d = "O3D_" + d
     return root + d + '/derivatives/preprocess/sub-{}/dwi/sub-{}_b-2000_dwi.nii.gz'.format(sub, sub)
 
 def mri_convert(infile, outfile, dummy = True):
