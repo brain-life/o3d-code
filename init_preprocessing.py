@@ -109,8 +109,4 @@ bvec_out = root + dataset_root[dataset] + out_dwi.format(subject) + "sub-{}_b-20
 bval_out = root + dataset_root[dataset] + out_dwi.format(subject) + "sub-{}_b-2000_dwi".format(subject) + ".bvals"
 
 copier.copy(bval_in, bval_out, action = "copy", dummy = False)
-if dataset == "hcp7t":
-    mask = mapping[dataset]["mask"].format(name)
-    copier.copy(bvec_in, bvec_out, anatomy = mask, action = "mask", dummy = False)
-else:
-    copier.copy(bvec_in, bvec_out, action = "copy", dummy = False)
+copier.copy(bvec_in, bvec_out, action = "copy", dummy = False)
