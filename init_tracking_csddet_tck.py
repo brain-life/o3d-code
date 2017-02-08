@@ -12,17 +12,17 @@ lifebid_root = "/N/dc2/projects/lifebid/"
 
 mapping = {}
 mapping["stn"] = {
-    "input": root + "O3D_STN/derivatives/tracking_csddet_trk/sub-{}/dwi/sub-{}_dwi_var-csddet-run-{}_tract.trk",
+    "input": root + "O3D_STN/derivatives/tracking_csddet_trk/sub-{}/dwi/sub-{}_dwi_var-csddet_run-{}_tract.trk",
     "output": root + "O3D_STN/derivatives/tracking_csddet_tck/sub-{}/dwi/sub-{}_dwi_var-csddet_run-{}_tract.tck"
 }
 
 mapping["hcp3t"] = {
-    "input": root + "O3D_HCP3T/derivatives/tracking_csddet_trk/sub-{}/dwi/sub-{}_dwi_var-csddet-run-{}_tract.trk",
+    "input": root + "O3D_HCP3T/derivatives/tracking_csddet_trk/sub-{}/dwi/sub-{}_dwi_var-csddet_run-{}_tract.trk",
     "output": root + "O3D_HCP3T/derivatives/tracking_csddet_tck/sub-{}/dwi/sub-{}_dwi_var-csddet_run-{}_tract.tck"
 }
 
 mapping["hcp7t"] = {
-    "input": root + "O3D_HCP7T/derivatives/tracking_csddet_trk/sub-{}/dwi/sub-{}_dwi_var-csddet-run-{}_tract.trk",
+    "input": root + "O3D_HCP7T/derivatives/tracking_csddet_trk/sub-{}/dwi/sub-{}_dwi_var-csddet_run-{}_tract.trk",
     "output": root + "O3D_HCP7T/derivatives/tracking_csddet_tck/sub-{}/dwi/sub-{}_dwi_var-csddet_run-{}_tract.tck"
 }
 
