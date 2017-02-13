@@ -15,13 +15,13 @@ anatomy = copier.getAnatomy(root, dataset, subject)
 
 mapping = {}
 mapping["stn"] = {
-    "input": root + "O3D_STN/derivatives/dissection_afq_trk/sub-{}/dwi/sub-{}_dwi_DTI_var_{}_run-{}_tract_var-afq_set-{}_track.trk",
-    "output": root + "O3D_STN/derivatives/dissection_afq_tck/sub-{}/dwi/sub-{}_dwi_DTI_var_{}_run-{}_tract_var-afq_set-{}_track.tck"
+    "input": root + "O3D_STN/derivatives/dissection_afq_trk/sub-{}/dwi/sub-{}_dwi_DTI_var-{}_run-{}_tract_var-afq_set-{}_track.trk",
+    "output": root + "O3D_STN/derivatives/dissection_afq_tck/sub-{}/dwi/sub-{}_dwi_DTI_var-{}_run-{}_tract_var-afq_set-{}_track.tck"
 }
 
 mapping["hcp3t"] = {
-    "input": root + "O3D_STN/derivatives/dissection_afq_trk/sub-{}/dwi/sub-{}_dwi_DTI_var_{}_run-{}_tract_var-afq_set-{}_track.trk",
-    "output": root + "O3D_STN/derivatives/dissection_afq_tck/sub-{}/dwi/sub-{}_dwi_DTI_var_{}_run-{}_tract_var-afq_set-{}_track.tck"
+    "input": root + "O3D_STN/derivatives/dissection_afq_trk/sub-{}/dwi/sub-{}_dwi_DTI_var-{}_run-{}_tract_var-afq_set-{}_track.trk",
+    "output": root + "O3D_STN/derivatives/dissection_afq_tck/sub-{}/dwi/sub-{}_dwi_DTI_var-{}_run-{}_tract_var-afq_set-{}_track.tck"
 }
 
 # mapping["hcp7t"] = {
