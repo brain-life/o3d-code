@@ -117,10 +117,11 @@ def life(infile, outfile, anatomy, dummy = True):
 # export MATLABPATH="/N/u/andnpatt/Karst/lifebid/o3d-code/utils"
 
 def afq2trk(infile, outfile, anatomy, dummy = True):
+    path = os.getcwd() + '/utils'
     if dummy:
-        print 'matlab -nosplash -nodesktop -r "addpath(genpath(\'/N/dc2/projects/lifebid/Paolo/local/matlab\'));afq2trk ' + infile + ' ' + anatomy + ' ' + outfile + '"'
+        print 'matlab -nosplash -nodesktop -r "addpath(genpath(\'' + path + '\'));afq2trk ' + infile + ' ' + anatomy + ' ' + outfile + '"'
     else:
-        call(['matlab', '-nosplash', '-nodesktop', '-r', 'addpath(genpath(\'/N/dc2/projects/lifebid/Paolo/local/matlab\'));afq2trk ' + infile + ' ' + anatomy + ' ' + outfile + ';exit;'])
+        call(['matlab', '-nosplash', '-nodesktop', '-r', 'addpath(genpath(\'' + path + '\'));afq2trk ' + infile + ' ' + anatomy + ' ' + outfile + ';exit;'])
 
 def clean_afq2trk(infile, outfile, anatomy, dummy = True):
     if dummy:

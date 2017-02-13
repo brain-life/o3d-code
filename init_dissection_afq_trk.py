@@ -18,12 +18,12 @@ lifebid_root = "/N/dc2/projects/lifebid/"
 mapping = {}
 mapping["stn"] = {
     "mat_in": lifebid_root + "code/ccaiafa/Caiafa_Pestilli_paper2015/Results/ETC_Dec2015/Single_TC/fe_structure_{}_96dirs_b2000_1p5iso_STC_run01_500000_{}_connNUM{}_TRACTS.mat",
-    "mat_out": root + "O3D_STN/derivatives/dissection_afq_trk/sub-{}/dwi/sub-{}_dwi_DTI_var-{}_run-{}_tract"
+    "mat_out": root + "O3D_STN/derivatives/dissection_afq_trk/sub-{}/dwi/sub-{}_dwi_DTI_var-{}_run-{}_tract_var-afq"
 }
 
 mapping["hcp3t"] = {
     "mat_in": lifebid_root + "code/ccaiafa/Caiafa_Pestilli_paper2015/Results/ETC_Dec2015/Single_TC/fe_structure_{}_stc_run01_500000_{}_connNUM{}_TRACTS.mat",
-    "mat_out": root + "O3D_STN/derivatives/dissection_afq_trk/sub-{}/dwi/sub-{}_dwi_DTI_var-{}_run-{}_tract"
+    "mat_out": root + "O3D_STN/derivatives/dissection_afq_trk/sub-{}/dwi/sub-{}_dwi_DTI_var-{}_run-{}_tract_var-afq"
 }
 
 # mapping["hcp7t"] = {
