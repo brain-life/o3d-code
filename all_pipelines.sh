@@ -19,11 +19,13 @@ wait $JOB1
 JOB3=`python init_tracking_csddet_trk.py $dataset $subject $root &`
 JOB4=`python init_tracking_csdprob_trk.py $dataset $subject $root &`
 JOB5=`python init_tracking_dtidet_trk.py $dataset $subject $root &`
-JOB6=`python init_dissection_afq_trk.py $dataset $subject $root &`
-JOB7=`python init_connectome_tract.py $dataset $subject $root &`
-wait $JOB3 $JOB4 $JOB5 $JOB6
+JOB6=`python init_dissection_afq_dtidet_trk.py $dataset $subject $root &`
+JOB7=`python init_dissection_afq_csddet_trk.py $dataset $subject $root &`
+JOB8=`python init_dissection_afq_csdprob_trk.py $dataset $subject $root &`
+JOB9=`python init_connectome_tract.py $dataset $subject $root &`
+wait $JOB3 $JOB4 $JOB5 $JOB6 $JOB7 $JOB8 $JOB9
 python init_tracking_csddet_tck.py $dataset $subject $root &
 python init_tracking_csdprob_tck.py $dataset $subject $root &
 python init_tracking_dtidet_tck.py $dataset $subject $root &
-python init_dissection_afq_trk.py $dataset $subject $root &
+python init_dissection_afq_tck.py $dataset $subject $root &
 

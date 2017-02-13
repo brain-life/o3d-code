@@ -122,6 +122,12 @@ def afq2trk(infile, outfile, anatomy, dummy = True):
     else:
         call(['matlab', '-nosplash', '-nodesktop', '-r', 'addpath(genpath(\'/N/dc2/projects/lifebid/Paolo/local/matlab\'));afq2trk ' + infile + ' ' + anatomy + ' ' + outfile + ';exit;'])
 
+def clean_afq2trk(infile, outfile, anatomy, dummy = True):
+    if dummy:
+        print 'matlab -nosplash -nodesktop -r "addpath(genpath(\'/N/dc2/projects/lifebid/Paolo/local/matlab\'));addpath(genpath(\'/N/dc2/projects/o3d/code/utils\'));clean_afq2trk ' + infile + ' ' + anatomy + ' ' + outfile + '"'
+    else:
+        call(['matlab', '-nosplash', '-nodesktop', '-r', 'addpath(genpath(\'/N/dc2/projects/lifebid/Paolo/local/matlab\'));addpath(genpath(\'/N/dc2/projects/o3d/code/utils\'));clean_afq2trk ' + infile + ' ' + anatomy + ' ' + outfile + ';exit;'])
+
 def trk2tck(infile, outfile, anatomy, dummy = True):
     if dummy:
         print ''
@@ -171,6 +177,8 @@ def copy(in_inter, out_inter, action = "copy", dummy = True, anatomy = ""):
             life(all_in[i], all_out[i], dummy = dummy, anatomy = anatomy)
         elif (action == "afq2trk"):
             afq2trk(all_in[i], all_out[i], dummy = dummy, anatomy = anatomy)
+        elif (action == "clean_afq2trk"):
+            clean_afq2trk(all_in[i], all_out[i], dummy = dummy, anatomy = anatomy)
         elif (action == "trk2tck"):
             trk2tck(all_in[i], all_out[i], dummy = dummy, anatomy = anatomy)
         elif (action == "tck2trk"):
