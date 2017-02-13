@@ -4,6 +4,9 @@ import utils.copy_template as copier
 dataset, subject, root = copier.parseCommandLine(sys.argv)
 print("Warning, this can only be run after init_dissection_afq_trk.py has been run")
 name = copier.subjectNameFromNumber(subject)
+lmax = ['lmax0' + `i` if i < 10 else 'lmax' + `i` for i in range(2, 14, 2)]
+lmax_str = copier.arrToInterpolateString(lmax)
+algs = copier.arrToInterpolateString(['dtidetlife', 'csdproblife', 'csddetlife'])
 repititions = ['0' + `i` for i in range(1,10)] + ["10"]
 rep_str = copier.arrToInterpolateString(repititions)
 tracts = ['ATRl', 'ATRr', 'CSTl', 'CSTr', 'CCgl', 'CCgr', 'CHyl', 'CHyr', 'FMJ', 'FMI', 'IFOFl', 'IFOFr', 'ILFl', 'ILFr', 'SLFl', 'SLFr', 'UFl', 'UFr', 'ARCl', 'ARCr']
@@ -12,13 +15,13 @@ anatomy = copier.getAnatomy(root, dataset, subject)
 
 mapping = {}
 mapping["stn"] = {
-    "input": root + "O3D_STN/derivatives/dissection_afq_trk/sub-{}/dwi/sub-{}_dwi_DTI_var_dtidetlife_run-{}_tract_var-afq_set-{}_track.trk",
-    "output": root + "O3D_STN/derivatives/dissection_afq_tck/sub-{}/dwi/sub-{}_dwi_DTI_var_dtidetlife_run-{}_tract_var-afq_set-{}_track.tck"
+    "input": root + "O3D_STN/derivatives/dissection_afq_trk/sub-{}/dwi/sub-{}_dwi_DTI_var_{}_run-{}_tract_var-afq_set-{}_track.trk",
+    "output": root + "O3D_STN/derivatives/dissection_afq_tck/sub-{}/dwi/sub-{}_dwi_DTI_var_{}_run-{}_tract_var-afq_set-{}_track.tck"
 }
 
 mapping["hcp3t"] = {
-    "input": root + "O3D_STN/derivatives/dissection_afq_trk/sub-{}/dwi/sub-{}_dwi_DTI_var_dtidetlife_run-{}_tract_var-afq_set-{}_track.trk",
-    "output": root + "O3D_STN/derivatives/dissection_afq_tck/sub-{}/dwi/sub-{}_dwi_DTI_var_dtidetlife_run-{}_tract_var-afq_set-{}_track.tck"
+    "input": root + "O3D_STN/derivatives/dissection_afq_trk/sub-{}/dwi/sub-{}_dwi_DTI_var_{}_run-{}_tract_var-afq_set-{}_track.trk",
+    "output": root + "O3D_STN/derivatives/dissection_afq_tck/sub-{}/dwi/sub-{}_dwi_DTI_var_{}_run-{}_tract_var-afq_set-{}_track.tck"
 }
 
 # mapping["hcp7t"] = {
@@ -31,6 +34,6 @@ mapping["hcp3t"] = {
 # matlab -nosplash -nodesktop -r "addpath(genpath('/N/dc2/projects/lifebid/Paolo/local/matlab'));fe2trk /N/dc2/projects/lifebid/code/ccaiafa/Caiafa_Pestilli_paper2015/paper_datasets/STN/sub-FP/fe_structures/fe_structure_FP_96dirs_b2000_1p5iso_STC_run01_tensor__connNUM01.mat /N/dc2/projects/lifebid/code/ccaiafa/Caiafa_Pestilli_paper2015/paper_datasets/STN/sub-FP/dwi/run01_fliprot_aligned_trilin.nii.gz out.trk"
 
 
-in_str = mapping[dataset]["input"].format(subject, subject, rep_str, tract_str)
-out_str = mapping[dataset]["output"].format(subject, subject, rep_str, tract_str)
+in_str = mapping[dataset]["input"].format(subject, subject, alg, rep_str, tract_str)
+out_str = mapping[dataset]["output"].format(subject, subject, alg, rep_str, tract_str)
 copier.copy(in_str, out_str, anatomy = anatomy, action = "trk2tck", dummy = False)
