@@ -21,7 +21,7 @@ mapping["stn"] = {
 
 mapping["hcp3t"] = {
     "input": root + "O3D_STN/derivatives/dissection_afq_trk/sub-{}/dwi/sub-{}_dwi_DTI_var-{}_run-{}_tract_var-afq_set-{}_track.trk",
-    "output": root + "O3D_STN/derivatives/dissection_afq_tck/sub-{}/dwi/sub-{}_dwi_DTI_var-{}_run-{}_tract_var-afq_set-{}_track.tck"
+    "output": root + "O3D_HCP3T/derivatives/dissection_afq_tck/sub-{}/dwi/sub-{}_dwi_DTI_var-{}_run-{}_tract_var-afq_set-{}_track.tck"
 }
 
 # mapping["hcp7t"] = {
