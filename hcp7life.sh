@@ -15,12 +15,15 @@ ID_0012=910241
 SUB=$1
 ID=$(eval echo "\$ID_$1")
 
-if [ $2 = 'dtidet']; then
-    LAB='tensor_'
+if [ $2 = 'dtidet' ]; then
+    LAB1='wm_tensor'
+    LAB2='tensor_'
 elif [ $2 = 'csddet' ]; then
-    LAB='SD_STREAM_lmax8'
+    LAB1='csd_lmax8_wm_SD_STREAM'
+    LAB2='SD_STREAM_lmax8'
 elif [ $2 = 'csdprob' ]; then
-    LAB='SD_PROB_lmax8'
+    LAB1='csd_lmax8_wm_SD_PROB'
+    LAB2='SD_PROB_lmax8'
 else
     echo 'Wrong type of tractography'; exit
 fi
@@ -28,13 +31,15 @@ fi
 DIR=/N/dc2/projects/lifebid/Paolo/data/O3D_SRC/HCP7T/${ID}
 SRC=/N/dc2/projects/o3d/test3/O3D_HCP7T/derivatives/preprocess/sub-${SUB}/dwi
 
-TCK=${DIR}/data_b2000_wm_tensor-NUM01-500000.tck
 DWI=${SRC}/sub-${SUB}_b-2000_dwi.nii.gz
-OUT=${DIR}/fe_structure_${ID}_STC_run01_${LAB}_connNUM
+OUT=${DIR}/fe_structure_${ID}_STC_run01_${LAB2}_connNUM
+ADD1="addpath(genpath('/N/dc2/projects/lifebid/Paolo/local/matlab'))"
+ADD2="addpath(genpath('/N/dc2/projects/lifebid/Paolo/code/multishell-mrtrix'))"
 
 for N in 01 02 03 04 05 06 07 08 09 10; do
+    TCK=${DIR}/data_b2000_${LAB1}-NUM${N}-500000.tck
     MAT=${OUT}${N}.mat
     CMD="life_eval_multishell $TCK $DWI $MAT"
-    matlab -nojvm -nodesktop -nosplash -r "${CMD};exit"
+    matlab -nojvm -nodesktop -nosplash -r "${ADD1};${ADD2};${CMD};exit"
 done
 
