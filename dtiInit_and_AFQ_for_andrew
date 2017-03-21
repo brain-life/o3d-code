@@ -1,0 +1,36 @@
+addpath(genpath('vistasoft'))
+addpath(genpath('afq'))% project/lifebid/code/franco/afq
+addpath(genpath('encode'))
+
+% dtiInit preprocessing for HCP7 ONLY
+dwParams = dtiInitParams;
+dwParams.rotateBvecsWithRx = 1;
+dwParams.rotateBvecsWithCanXform = 1;
+dwParams.bvecsFile = fullfile(baseDir,'raw','bvecs_real');
+dwParams.bvalsFile = fullfile(baseDir,'raw','bvals');
+dwParams.eddyCorrect = -1;
+dwParams.dwOutMm = [1.05 1.05 1.05];
+dwParams.phaseEncodeDir = 2;
+dwParams.outDir = fullfile(projdir1);
+[dt6FileName, outBaseDir] = dtiInit(sprintf('data_b%s.nii.gz', bvals), 't1_acpc_bet.nii.gz', dwParams)
+
+% The process above will generate a dt6.mat file.
+
+% Segment major tracts using AFQ
+dtFile = 'pathto/dt6.mat';
+
+load('path-to-life.mat','fe');
+fg = feGet(fe, 'fibers acpc');
+w = feGet(fe,'fiber weights');
+clear fe
+
+% Save fascicles top disk after removing bad fascicles.
+wholeBrainConnectome = ['path-to-whole-brain-connectome.mat'];
+fg = fgExtract(fg, w > 0);
+fgWrite(fg, wholeBrainConnectome)
+
+% Run AFQ to segment
+[fascicles,classification,fg,fg_classified] = feAfqSegment(dtFile, wholeBrainConnectome);
+
+% Save results to disk
+save('file-path-toAFQ-results.mat','fascicles','classification','fg_classified');
