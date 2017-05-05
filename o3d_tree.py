@@ -37,8 +37,12 @@ def main(dir_root, ss, ds):
                  'tracking_csddet_tck',
                  'tracking_csdprob_tck',
                  'life_struct',
-                 'dissection_afq_trk',
-                 'dissection_afq_tck',
+                 'dissection_afq_dtidet_trk',
+                 'dissection_afq_csddet_trk',
+                 'dissection_afq_csdprob_trk',
+                 'dissection_afq_dtidet_tck',
+                 'dissection_afq_csddet_tck',
+                 'dissection_afq_csdprob_tck',
                  'connectome_tract']
 
     readme = 'README'
@@ -69,33 +73,33 @@ def main(dir_root, ss, ds):
 
     data_dir['tracking_dtidet_trk'] = ['dwi']
     data_file['tracking_dtidet_trk', 'dwi'] = \
-        ['_dwi_var-dtidet_run-0{}_tract.trk'.format(i+1) for i in range(9)] + ['_dwi_var-dtidet_run-10_tract.trk'] +\
-        ['_dwi_var-dtidetlife_run-0{}_tract.trk'.format(i+1) for i in range(9)] + ['_dwi_var-dtidetlife_run-10_tract.trk']
+        ['_dwi_var-dtidet_run-{:02d}_tract.trk'.format(i+1) for i in range(10)] +\
+        ['_dwi_var-dtidetlife_run-{:02d}_tract.trk'.format(i+1) for i in range(10)]
 
     data_dir['tracking_csddet_trk'] = ['dwi']
     data_file['tracking_csddet_trk', 'dwi'] = \
-        ['_dwi_var-csddet_run-0{}_tract.trk'.format(i+1) for i in range(9)] + ['_dwi_var-csddet_run-10_tract.trk'] +\
-        ['_dwi_var-csddetlife_run-0{}_tract.trk'.format(i+1) for i in range(9)] + ['_dwi_var-csddetlife_run-10_tract.trk']
+        ['_dwi_var-csddet_run-{:02d}_tract.trk'.format(i+1) for i in range(10)] +\
+        ['_dwi_var-csddetlife_run-{:02d}_tract.trk'.format(i+1) for i in range(10)]
 
     data_dir['tracking_csdprob_trk'] = ['dwi']
     data_file['tracking_csdprob_trk', 'dwi'] = \
-        ['_dwi_var-csdprob_run-0{}_tract.trk'.format(i+1) for i in range(9)] + ['_dwi_var-csdprob_run-10_tract.trk'] +\
-        ['_dwi_var-csdproblife_run-0{}_tract.trk'.format(i+1) for i in range(9)] + ['_dwi_var-csdproblife_run-10_tract.trk']
+        ['_dwi_var-csdprob_run-{:02d}_tract.trk'.format(i+1) for i in range(10)] +\
+        ['_dwi_var-csdproblife_run-{:02d}_tract.trk'.format(i+1) for i in range(10)]
 
     data_dir['tracking_dtidet_tck'] = ['dwi']
     data_file['tracking_dtidet_tck', 'dwi'] = \
-        ['_dwi_var-dtidet_run-0{}_tract.tck'.format(i+1) for i in range(9)] + ['_dwi_var-dtidet_run-10_tract.tck'] +\
-        ['_dwi_var-dtidetlife_run-0{}_tract.tck'.format(i+1) for i in range(9)] + ['_dwi_var-dtidetlife_run-10_tract.tck']
+        ['_dwi_var-dtidet_run-{:02d}_tract.tck'.format(i+1) for i in range(10)] +\
+        ['_dwi_var-dtidetlife_run-{:02d}_tract.tck'.format(i+1) for i in range(10)]
 
     data_dir['tracking_csddet_tck'] = ['dwi']
     data_file['tracking_csddet_tck', 'dwi'] = \
-        ['_dwi_var-csddet_run-0{}_tract.tck'.format(i+1) for i in range(9)] + ['_dwi_var-csddet_run-10_tract.tck'] +\
-        ['_dwi_var-csddetlife_run-0{}_tract.tck'.format(i+1) for i in range(9)] + ['_dwi_var-csddetlife_run-10_tract.tck']
+        ['_dwi_var-csddet_run-{:02d}_tract.tck'.format(i+1) for i in range(10)] +\
+        ['_dwi_var-csddetlife_run-{:02d}_tract.tck'.format(i+1) for i in range(10)]
 
     data_dir['tracking_csdprob_tck'] = ['dwi']
     data_file['tracking_csdprob_tck', 'dwi'] = \
-        ['_dwi_var-csdprob_run-0{}_tract.tck'.format(i+1) for i in range(9)] + ['_dwi_var-csdprob_run-10_tract.tck'] +\
-        ['_dwi_var-csdproblife_run-0{}_tract.tck'.format(i+1) for i in range(9)] + ['_dwi_var-csdproblife_run-10_tract.tck']
+        ['_dwi_var-csdprob_run-{:02d}_tract.tck'.format(i+1) for i in range(10)] +\
+        ['_dwi_var-csdproblife_run-{:02d}_tract.tck'.format(i+1) for i in range(10)]
 
     data_dir['life_struct'] = ['dwi']
     data_file['life_struct', 'dwi'] = []
@@ -103,19 +107,34 @@ def main(dir_root, ss, ds):
     tracts = ['ATRl', 'ATRr', 'CSTl', 'CSTr', 'CCgl', 'CCgr', 'CHyl', 'CHyr', 'FMJ', 'FMI', 'IFOFl', 'IFOFr', 'ILFl', 'ILFr', 'SLFl', 'SLFr', 'UFl', 'UFr', 'ARCl', 'ARCr']
     algs = ['csddetlife', 'dtidetlife', 'csdproblife']
 
-    data_dir['dissection_afq_tck'] = ['dwi']
-    data_file['dissection_afq_tck', 'dwi'] = \
-        ['_dwi_DTI_var-{}_run-{}_tract_var-afq_set-{}_tract.tck'.format(a, i+1, t) for a in algs for i in range(10) for t in tracts]
+    data_dir['dissection_afq_dtidet_tck'] = ['dwi']
+    data_file['dissection_afq_dtidet_tck', 'dwi'] = \
+        ['_dwi_var-dtidetlife_run-{:02d}_tract_var-afq_set-{}_tract.tck'.format(i+1, t) for i in range(10) for t in tracts]
+    data_dir['dissection_afq_csddet_tck'] = ['dwi']
+    data_file['dissection_afq_csddet_tck', 'dwi'] = \
+        ['_dwi_var-csddetlife_run-{:02d}_tract_var-afq_set-{}_tract.tck'.format(i+1, t) for i in range(10) for t in tracts]
+    data_dir['dissection_afq_csdprob_tck'] = ['dwi']
+    data_file['dissection_afq_csdprob_tck', 'dwi'] = \
+        ['_dwi_var-csdproblife_run-{:02d}_tract_var-afq_set-{}_tract.tck'.format(i+1, t) for i in range(10) for t in tracts]
 
-    data_dir['dissection_afq_trk'] = ['dwi']
-    data_file['dissection_afq_trk', 'dwi'] = \
-        ['_dwi_DTI_var-{}_run-{}_tract_var-afq_set-{}_tract.trk'.format(a, i+1, t) for a in algs for i in range(10) for t in tracts]
+    data_dir['dissection_afq_dtidet_trk'] = ['dwi']
+    data_file['dissection_afq_dtidet_trk', 'dwi'] = \
+        ['_dwi_var-dtidetlife_run-{:02d}_tract_var-afq_set-{}_tract.trk'.format(i+1, t) for i in range(10) for t in tracts]
+    data_dir['dissection_afq_csddet_trk'] = ['dwi']
+    data_file['dissection_afq_csddet_trk', 'dwi'] = \
+        ['_dwi_var-csddetlife_run-{:02d}_tract_var-afq_set-{}_tract.trk'.format(i+1, t) for i in range(10) for t in tracts]
+    data_dir['dissection_afq_csdprob_trk'] = ['dwi']
+    data_file['dissection_afq_csdprob_trk', 'dwi'] = \
+        ['_dwi_var-csdproblife_run-{:02d}_tract_var-afq_set-{}_tract.trk'.format(i+1, t) for i in range(10) for t in tracts]
 
     data_dir['connectome_tract'] = ['dwi']
     data_file['connectome_tract', 'dwi'] =\
-        ['_dwi_DTI_var-dtidetlife_run-{}_tract_connectome.csv'.format(i+1) for i in range(10)] +\
-        ['_dwi_DTI_var-csddetlife_run-{}_tract_connectome.csv'.format(i+1) for i in range(10)] +\
-        ['_dwi_DTI_var-csdproblife_run-{}_tract_connectome.csv'.format(i+1) for i in range(10)]
+        ['_dwi_var-dtidetlife_run-{:02d}_var-fcount_connectome.csv'.format(i+1) for i in range(10)] +\
+        ['_dwi_var-csddetlife_run-{:02d}_var-fcount_connectome.csv'.format(i+1) for i in range(10)] +\
+        ['_dwi_var-csdproblife_run-{:02d}_var-fcount_connectome.csv'.format(i+1) for i in range(10)] +\
+        ['_dwi_var-dtidetlife_run-{:02d}_var-fdensity_connectome.csv'.format(i+1) for i in range(10)] +\
+        ['_dwi_var-csddetlife_run-{:02d}_var-fdensity_connectome.csv'.format(i+1) for i in range(10)] +\
+        ['_dwi_var-csdproblife_run-{:02d}_var-fdensity_connectome.csv'.format(i+1) for i in range(10)]
 
 
     dir_0 = join(dir_root, ds)
