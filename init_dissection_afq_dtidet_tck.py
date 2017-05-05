@@ -12,13 +12,13 @@ anatomy = copier.getAnatomy(root, dataset, subject)
 
 mapping = {}
 mapping["stn"] = {
-    "input": root + "O3D_{}/derivatives/dissection_afq_dtidet_trk/sub-{}/dwi/sub-{}_dwi_DTI_var-dtidetlife_run-{}_tract_var-afq_set-{}_tract.trk",
-    "output": root + "O3D_{}/derivatives/dissection_afq_dtidet_tck/sub-{}/dwi/sub-{}_dwi_DTI_var-dtidetlife_run-{}_tract_var-afq_set-{}_tract.tck"
+    "input": root + "O3D_{}/derivatives/dissection_afq_dtidet_trk/sub-{}/dwi/sub-{}_dwi_var-dtidetlife_run-{}_var-afq_set-{}_tract.trk",
+    "output": root + "O3D_{}/derivatives/dissection_afq_dtidet_tck/sub-{}/dwi/sub-{}_dwi_var-dtidetlife_run-{}_var-afq_set-{}_tract.tck"
 }
 
 mapping["hcp3t"] = {
-    "input": root + "O3D_{}/derivatives/dissection_afq_dtidet_trk/sub-{}/dwi/sub-{}_dwi_DTI_var-dtidetlife_run-{}_tract_var-afq_set-{}_tract.trk",
-    "output": root + "O3D_{}/derivatives/dissection_afq_dtidet_tck/sub-{}/dwi/sub-{}_dwi_DTI_var-dtidetlife_run-{}_tract_var-afq_set-{}_tract.tck"
+    "input": root + "O3D_{}/derivatives/dissection_afq_dtidet_trk/sub-{}/dwi/sub-{}_dwi_var-dtidetlife_run-{}_var-afq_set-{}_tract.trk",
+    "output": root + "O3D_{}/derivatives/dissection_afq_dtidet_tck/sub-{}/dwi/sub-{}_dwi_var-dtidetlife_run-{}_var-afq_set-{}_tract.tck"
 }
 
 # mapping["hcp7t"] = {
