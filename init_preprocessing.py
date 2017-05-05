@@ -47,7 +47,7 @@ mapping["hcp3t"] = {
         lifebid_root + "2t1/HCP/{}/anatomy/T1w_acpc_dc_restore_1p25.nii.gz",
         lifebid_root + "2t1/anatomy/{}/mri/brainmask.mgz",
         lifebid_root + "code/ccaiafa/Caiafa_Pestilli_paper2015/paper_datasets/HCP3T/sub-{}/dwi/dwi_data_b2000_aligned_trilin.nii.gz",
-        lifebid_root + "2t1/HCP/{}/original_hcp_data/nodif_brain_mask.nii.gz"
+        lifebid_root + "2t1/HCP/{}/dt6_b2000trilin/bin/brainMask.nii.gz"
     ],
     "params": [
         name, name, name, name
