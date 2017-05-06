@@ -31,11 +31,24 @@ afq_code{20} = 'ARCr';
 % Load the afq structure stored as mat file
 load(fe_src);
 
-% Run AFQ to segment
-[fascicles,classification,fg,fg_classified] = feAfqSegment(dt6_src, fg);
+% Extract the weight fascicles/streamline computed by Life
+w = feGet(fe,'fiber weights'); 
+
+% Extract fascicles in (dwi?) acpc space
+fg = feGet(fe,'fibers acpc');  
+
+% Load dt6 file
+dt = dtiLoadDt6(dt6_src);
+
+%fg = AFQ_WholebrainTractography(dt,['test']);
+[fg_classified,~,classification,fg]= AFQ_SegmentFiberGroups(dt, fg, [], [], false);
+fascicles = fg2Array(fg_classified)
+
+% OLD 
+%[fascicles,classification,fg,fg_classified] = feAfqSegment(dt6_src, fg);
 
 % Save results to disk
-save(afq_out,fascicles,classification,fg_classified);
+save(afq_out,'fascicles','classification','fg_classified');
 
 % Write each tract
 %for t=1:size(fascicles,2)
