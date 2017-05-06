@@ -27,9 +27,9 @@ mapping["hcp3t"] = {
 
 mapping["hcp7t"] = {
     "input": lifebid_root + "code/ccaiafa/Caiafa_Pestilli_paper2015/paper_datasets/HCP7T/sub-{}/tractography/data_b2000_csd_lmax8_wm_SD_PROB-NUM{}-500000.tck",
-    "output": "O3D_HCP7T/derivatives/tracking_csdprob_trk/sub-{}/dwi/sub-{}_dwi_var-csdprob_run-{}_tract.trk",
+    "output": root + "O3D_HCP7T/derivatives/tracking_csdprob_trk/sub-{}/dwi/sub-{}_dwi_var-csdprob_run-{}_tract.trk",
     "mat_in": lifebid_root + "code/ccaiafa/Caiafa_Pestilli_paper2015/paper_datasets/HCP7T/sub-{}/fe_structures/fe_structure_{}_STC_run01_SD_PROB_lmax8_connNUM{}.mat",
-    "mat_out": "O3D_HCP7T/derivatives/tracking_csdprob_trk/sub-{}/dwi/sub-{}_dwi_var-csdproblife_run-{}_tract.trk"
+    "mat_out": root + "O3D_HCP7T/derivatives/tracking_csdprob_trk/sub-{}/dwi/sub-{}_dwi_var-csdproblife_run-{}_tract.trk"
 }
 
 mat_in = mapping[dataset]["mat_in"].format(name, name, rep_str)

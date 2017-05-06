@@ -11,6 +11,7 @@ anatomy = copier.getAnatomy(root, dataset, subject)
 lifebid_root = "/N/dc2/projects/lifebid/"
 
 mapping = {}
+
 mapping["stn"] = {
     "input": lifebid_root + "code/ccaiafa/Caiafa_Pestilli_paper2015/paper_datasets/STN/sub-{}/tractography/run01_fliprot_aligned_trilin_wm_tensor-NUM{}-500000.tck",
     "output": root + "O3D_STN/derivatives/tracking_dtidet_trk/sub-{}/dwi/sub-{}_dwi_var-dtidet_run-{}_tract.trk",
