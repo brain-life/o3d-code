@@ -83,10 +83,15 @@ mapping["hcp7t"] = {
 inputs = mapping[dataset]["input"]
 params = mapping[dataset]["params"]
 outputs = mapping[dataset]["output"]
+
 copier.copy(inputs[0].format(params[0]), outputs[0].format(subject, subject), dummy = False)
 action = "copy"
 if inputs[1][-3:] == "mgz":
     action = "mri_convert"
+
+out_str = outputs[0].format(subject, subject)
+if dataset != "hcp7t":
+    copier.copy(out_str, out_str, action = "rotate", dummy = False)
 
 out_str = outputs[1].format(subject, subject)
 copier.copy(inputs[1].format(params[1]), out_str, action = action, dummy = False)

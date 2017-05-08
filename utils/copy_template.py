@@ -100,7 +100,7 @@ def rotate(infile, outfile, dummy = True):
     if dummy:
         print 'rotate command print not implemented'
     else:
-        call(['mri_convert', '-iid', '1', '0', '0', infile, outfile])
+        call(['mri_convert', '-iid', '-1', '0', '0', infile, outfile])
 
 def mask(infile, outfile, mask, dummy = True):
     if dummy:
