@@ -31,6 +31,11 @@ MAXNUMFIBERSATTEMPTED=1500000
 
 cp ${SRC}/${DWI}_wm.mif ${OUT}/${DWI}_wm.mif
 
+## Compute Tensor Model
+dwi2tensor ${OUT}/${DWI}_dwi.mif \
+    -grad ${OUT{/${DWI}.b \
+    ${OUT}/${DWI}_dt.mif 
+
 ## create eigenvector map
 tensor2vector $OUT/${DWI}_dt.mif - | \
     mrmult - $OUT/${DWI}_fa.mif $OUT/${DWI}_ev.mif
