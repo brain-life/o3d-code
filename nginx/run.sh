@@ -2,7 +2,7 @@
 #you need to mount /mnt/soichifs as nginx so that nginx can access it (sshfs limiation?)
 docker rm -f nginx
 docker run --name nginx \
-	-v /root/dc2:/usr/share/nginx/html \
+	-v /root/o3d/data:/usr/share/nginx/html \
 	-v `pwd`/nginx.conf:/etc/nginx/nginx.conf \
 	-p 0.0.0.0:80:80 \
 	-d nginx
