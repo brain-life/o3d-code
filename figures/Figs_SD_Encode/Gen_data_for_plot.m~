@@ -1,0 +1,132 @@
+function Gen_data_for_plot()
+
+% Define path to the NEW LiFE
+Encode_path = '/N/dc2/projects/lifebid/code/ccaiafa/Caiafa_Pestilli_paper2015/Revision_Feb2017/encode/';
+addpath(genpath(Encode_path));
+
+dataOutputPath = '/N/dc2/projects/lifebid/code/ccaiafa/o3d-code/figures/Figs_SD_Encode/';
+
+dataRootPath = '/N/dc2/projects/o3d/test3';
+
+
+subjects = {'sub-0001','sub-0002','sub-0003','sub-0004',... % STN
+            'sub-0005','sub-0006','sub-0007','sub-0008',... % HCP3T
+            'sub-0009','sub-0010','sub-0011','sub-0012'};   % HCP7T
+datasets = {'O3D_STN','O3D_STN','O3D_STN','O3D_STN',...
+            'O3D_HCP3T','O3D_HCP3T','O3D_HCP3T','O3D_HCP3T'...
+            'O3D_HCP7T','O3D_HCP7T','O3D_HCP7T','O3D_HCP7T'};
+method   = {'csddet','csdprob'}; 
+Rep_tags = {'01','02','03','04','05','06','07','08','09','10'};
+
+nSubj = size(subjects,2); % Number of subjects
+nRep = 10; % Number of repetitions
+
+nnz_det = zeros(nSubj,nRep);
+nnz_prob = zeros(nSubj,nRep); 
+
+for iSubj = 1:nSubj
+    sub = subjects{iSubj};
+    data = datasets{iSubj};
+    
+    for r = 1:nRep
+        rep = Rep_tags{r};
+        
+        % Deterministic
+        FileNameDet    = deblank(ls(fullfile(dataRootPath, data, 'derivatives', 'life_struct', sub, 'dwi', ...
+            strcat(sub, '_dwi_var-',method{1},'life_',rep)))); 
+        % load fe structure
+        load(FileNameDet);
+        % read nnz
+        nnz_det(iSubj, r) = nnz(fe.life.M.Phi);
+        
+        
+        
+    end
+   
+end
+
+disp('SAVING RESULTS...')
+save(fullfile(dataOutputPath,'all_results.mat'), 'all_data','-v7.3')
+
+rmpath(genpath(Encode_path));
+
+end
+
+function [data] = gen_results(dataRootPath, sbj_set, conn_set, lparam_set, alg_set, snr_set, res, Ntheta)
+data = [];
+p = 1;
+for isbj =1:length(sbj_set)
+    subject = sbj_set{isbj};
+    for ialg = 1:length(alg_set)
+        alg = alg_set{ialg};
+        for iparam = 1:length(lparam_set)
+            lparam = lparam_set{iparam};
+            for iconn =1:length(conn_set)
+                conn = conn_set{iconn};
+                switch Ntheta
+                    case 90
+                    FileName    = deblank(ls(fullfile(dataRootPath, subject, strcat('fe_structure_*',subject, '_STC_run01_',alg,'*',lparam,'*',conn,'*'))));
+                    case 60
+                    switch subject
+                        case {'105115','110411','111312','113619'} %HCP3T 
+                            FileName    = deblank(ls(fullfile(dataRootPath, subject, strcat('fe_structure_*',subject, '_60_1dir*', '_STC_run01_',alg,'*',lparam,'*',conn,'*'))));        
+                        case {'FP','HT','KK','MP'} %STN 
+                            FileName    = deblank(ls(fullfile(dataRootPath, subject, strcat('fe_structure_*',subject, '*_60dir*', '_STC_run01_',alg,'*',lparam,'*',conn,'*'))));             
+                        case {'108323','109123','131217','910241'} %HCP7T 
+                            FileName    = deblank(ls(fullfile(dataRootPath, strcat('7t_',subject), strcat('fe_structure_*',subject, '_STC_run01_',alg,'*',lparam,'*',conn,'*'))));             
+                    end
+                    case {8,20,37,88}
+                        FileName    = deblank(ls(fullfile(dataRootPath, subject, strcat('fe_structure_*',subject, '_',num2str(Ntheta),'_2dir*', '_STC_run01_',alg,'*',lparam,'*',conn,'*'))));        
+                    case 96
+                    FileName   = deblank(ls(fullfile(dataRootPath, subject, strcat('fe_structure_*',subject, '_96dirs_b2000_1p5iso_STC_run01_',alg,'*',lparam,'*',conn,'*'))));
+                        
+                end
+                disp(['Retrieving results ', subject, '  connectome' ,conn,', ',alg,' ',lparam, ' Ndir', num2str(Ntheta), '...'])
+                load(FileName);
+                
+                % rmse
+                rmse = feGet(fe,'vox rmse')./feGet(fe,'b0signalimage')';
+                rmse = rmse(rmse~=Inf);
+                data(p,iconn).rmse = nanmean(rmse);
+                % nnz
+                ind = find(~isnan(fe.life.fit.weights)&fe.life.fit.weights>0);
+                data(p,iconn).nnz = length(ind);
+                % tractography method
+                data(p,iconn).alg = alg;
+                % lparam
+                data(p,iconn).lparam = lparam;                
+                % snr
+                data(p,iconn).snr = snr_set{isbj};
+                % resolution
+                data(p,iconn).res = res;
+                % Nparameters
+                switch lparam
+                    case 'lmax2'
+                        n = 2;
+                    case 'lmax4'
+                        n = 4;
+                    case 'lmax6'
+                        n = 6;
+                    case 'lmax8'
+                        n = 8;              
+                    case 'lmax10'
+                        n = 10; 
+                    case 'lmax12'
+                        n = 12;                         
+                end
+                data(p,iconn).Npar = 0.5*(n+1)*(n+2);
+                % Nvox
+                data(p,iconn).Nvox = size(fe.life.M.Phi,2);
+                % Ntheta
+                data(p,iconn).Ntheta = Ntheta;        
+            end
+            p = p + 1;
+        end
+    end
+end
+
+
+
+
+
+end
