@@ -22,6 +22,8 @@ nRep = 10; % Number of repetitions
 
 nnz_det = zeros(nSubj,nRep);
 nnz_prob = zeros(nSubj,nRep); 
+nnz_det_afterlife = zeros(nSubj,nRep);
+nnz_prob_afterlife = zeros(nSubj,nRep); 
 
 for iSubj = 1:nSubj
     sub = subjects{iSubj};
@@ -38,6 +40,7 @@ for iSubj = 1:nSubj
         load(FileNameDet);
         % read nnz
         nnz_det(iSubj, r) = nnz(fe.life.M.Phi);
+        nnz_det_afterlife(iSubj, r) = nnz(ttv(fe.life.M.Phi,fe.life.fit.weights,3));
         
         % Probabilistic
         FileNameProb    = deblank(ls(fullfile(dataRootPath, data, 'derivatives', 'life_struct', sub, 'dwi', ...
@@ -45,14 +48,15 @@ for iSubj = 1:nSubj
         % load fe structure
         load(FileNameProb);
         % read nnz
-        nnz_prob(iSubj, r) = nnz(fe.life.M.Phi);        
+        nnz_prob(iSubj, r) = nnz(fe.life.M.Phi);  
+        nnz_prob_afterlife(iSubj, r) = nnz(ttv(fe.life.M.Phi,fe.life.fit.weights,3));
         
     end
    
 end
 
 disp('SAVING RESULTS...')
-save(fullfile(dataOutputPath,'nnz_results.mat'), 'nnz_prob','nnz_det','subjects','datasets','-v7.3')
+save(fullfile(dataOutputPath,'nnz_results.mat'), 'nnz_prob','nnz_det','nnz_prob_afterlife','nnz_det_afterlife','subjects','datasets','-v7.3')
 
 rmpath(genpath(Encode_path));
 
