@@ -1,15 +1,19 @@
 function [] = Plot_nnz_figure()
 load 'nnz_results.mat'
 
+mean_tensor = mean(nnz_det,2);
 mean_det = mean(nnz_det,2);
 mean_prob = mean(nnz_prob,2);
 
+sem_tensor = std(nnz_det,0,2)/sqrt(size(nnz_det,2));
 sem_det = std(nnz_det,0,2)/sqrt(size(nnz_det,2));
 sem_prob = std(nnz_prob,0,2)/sqrt(size(nnz_det,2));
 
+mean_tensor_afterlife = mean(nnz_det_afterlife,2);
 mean_det_afterlife = mean(nnz_det_afterlife,2);
 mean_prob_afterlife = mean(nnz_prob_afterlife,2);
 
+sem_tensor_afterlife = std(nnz_det_afterlife,0,2)/sqrt(size(nnz_det_afterlife,2));
 sem_det_afterlife = std(nnz_det_afterlife,0,2)/sqrt(size(nnz_det_afterlife,2));
 sem_prob_afterlife = std(nnz_prob_afterlife,0,2)/sqrt(size(nnz_det_afterlife,2));
 
@@ -20,17 +24,17 @@ C = 10; % sem factor amplification
 centers = [10, 20, 30]; % x centers for each dataset
 
 figure
-plot_nnz(centers, dx, C, a, mean_prob, sem_prob, mean_det, sem_det, [1 2.5 4].*10^7 , [1  4].*10^7)
+plot_nnz(centers, dx, C, a, mean_prob, sem_prob, mean_det, sem_det, mean_tensor, sem_tensor,[1 2.5 4].*10^7 , [1  4].*10^7)
 title('Pre-LiFE')
 
 figure
-plot_nnz(centers, dx, C, a, mean_prob_afterlife, sem_prob_afterlife, mean_det_afterlife, sem_det_afterlife, [0 1 2].*10^7, [0 2].*10^7)
+plot_nnz(centers, dx, C, a, mean_prob_afterlife, sem_prob_afterlife, mean_det_afterlife, sem_det_afterlife, mean_tensor_afterlife, sem_tensor_afterlife,[0 1 2].*10^7, [0 2].*10^7)
 title('After-LiFE')
 
 
 end
 
-function [] = plot_nnz(centers, dx, C, a, mean_prob, sem_prob, mean_det, sem_det, ytick, ylim)
+function [] = plot_nnz(centers, dx, C, a, mean_prob, sem_prob, mean_det, sem_det,  mean_tensor, sem_tensor,ytick, ylim)
 % STN
 c = getNiceColors('cold');
 hold on;
@@ -43,7 +47,11 @@ for iSubj = 1:4
     plot([x;x],[mean_prob(iSubj) - C*sem_prob(iSubj)/2; mean_prob(iSubj) + C*sem_prob(iSubj)/2],'-','color',[a a a],'linewidth',2)
     % DET
     plot(x, mean_det(iSubj),'s','markerfacecolor',c(ii,:),'markeredgecolor','k','linewidth',0.5,'markersize',14)
-    plot([x;x],[mean_det(iSubj) - C*sem_det(iSubj)/2; mean_det(iSubj) + C*sem_det(iSubj)/2],'-','color',[a a a],'linewidth',2)    
+    plot([x;x],[mean_det(iSubj) - C*sem_det(iSubj)/2; mean_det(iSubj) + C*sem_det(iSubj)/2],'-','color',[a a a],'linewidth',2)   
+    % TENSOR
+    plot(x, mean_det(iSubj),'^','markerfacecolor',c(ii,:),'markeredgecolor','k','linewidth',0.5,'markersize',14)
+    plot([x;x],[mean_tensor(iSubj) - C*sem_tensor(iSubj)/2; mean_tensor(iSubj) + C*sem_tensor(iSubj)/2],'-','color',[a a a],'linewidth',2) 
+    
     ii = ii + 1;
     x = x + 0.5*dx;
 end
@@ -61,7 +69,11 @@ for iSubj = 5:8
     % DET
     plot(x, mean_det(iSubj),'s','markerfacecolor',c(ii,:),'markeredgecolor','k','linewidth',0.5,'markersize',14)
     plot([x;x],[mean_det(iSubj) - C*sem_det(iSubj)/2; mean_det(iSubj) + C*sem_det(iSubj)/2],'-','color',[a a a],'linewidth',2)    
-    ii = ii + 1;
+    % TENSOR
+    plot(x, mean_tensor(iSubj),'^','markerfacecolor',c(ii,:),'markeredgecolor','k','linewidth',0.5,'markersize',14)
+    plot([x;x],[mean_tensor(iSubj) - C*sem_tensor(iSubj)/2; mean_tensor(iSubj) + C*sem_tensor(iSubj)/2],'-','color',[a a a],'linewidth',2)    
+    ii = ii + 1;    
+    
     x = x + 0.5*dx;
 end
 
@@ -77,7 +89,11 @@ for iSubj = 9:12
     plot([x;x],[mean_prob(iSubj) - C*sem_prob(iSubj)/2; mean_prob(iSubj) + C*sem_prob(iSubj)/2],'-','color',[a a a],'linewidth',2)
     % DET
     plot(x, mean_det(iSubj),'s','markerfacecolor',c(ii,:),'markeredgecolor','k','linewidth',0.5,'markersize',14)
-    plot([x;x],[mean_det(iSubj) - C*sem_det(iSubj)/2; mean_det(iSubj) + C*sem_det(iSubj)/2],'-','color',[a a a],'linewidth',2)    
+    plot([x;x],[mean_det(iSubj) - C*sem_det(iSubj)/2; mean_det(iSubj) + C*sem_det(iSubj)/2],'-','color',[a a a],'linewidth',2)  
+    % TENSOR
+    plot(x, mean_tensor(iSubj),'^','markerfacecolor',c(ii,:),'markeredgecolor','k','linewidth',0.5,'markersize',14)
+    plot([x;x],[mean_tensor(iSubj) - C*sem_tensor(iSubj)/2; mean_tensor(iSubj) + C*sem_tensor(iSubj)/2],'-','color',[a a a],'linewidth',2)     
+    
     ii = ii + 1;
     x = x + 0.5*dx;
 end

@@ -20,8 +20,10 @@ Rep_tags = {'01','02','03','04','05','06','07','08','09','10'};
 nSubj = size(subjects,2); % Number of subjects
 nRep = 10; % Number of repetitions
 
+nnz_tensor = zeros(nSubj,nRep);
 nnz_det = zeros(nSubj,nRep);
 nnz_prob = zeros(nSubj,nRep); 
+nnz_tensor_afterlife = zeros(nSubj,nRep);
 nnz_det_afterlife = zeros(nSubj,nRep);
 nnz_prob_afterlife = zeros(nSubj,nRep); 
 
@@ -33,6 +35,13 @@ for iSubj = 1:nSubj
         rep = Rep_tags{r};
         disp(['Reading subject ', sub, ', conn ', rep]);
         
+        % Tensor
+        FileNameTensor    = deblank(ls(fullfile(dataRootPath, data, 'derivatives', 'life_struct', sub, 'dwi', ...
+            strcat(sub, '_dwi_var-','dtidet','life_run-',rep,'_life.mat'))));         
+        % load fe structure
+        load(FileNameTensor); 
+        nnz_tenor(iSubj, r) = nnz(fe.life.M.Phi);
+        nnz_tensor_afterlife(iSubj, r) = nnz(ttv(fe.life.M.Phi,fe.life.fit.weights,3));        
         % Deterministic
         FileNameDet    = deblank(ls(fullfile(dataRootPath, data, 'derivatives', 'life_struct', sub, 'dwi', ...
             strcat(sub, '_dwi_var-','csddet','life_run-',rep,'_life.mat')))); 
@@ -40,7 +49,7 @@ for iSubj = 1:nSubj
         load(FileNameDet);
         % read nnz
         nnz_det(iSubj, r) = nnz(fe.life.M.Phi);
-        nnz_det_afterlife(iSubj, r) = nnz(ttv(fe.life.M.Phi,fe.life.fit));
+        nnz_det_afterlife(iSubj, r) = nnz(ttv(fe.life.M.Phi,fe.life.fit.weights,3));
         
         % Probabilistic
         FileNameProb    = deblank(ls(fullfile(dataRootPath, data, 'derivatives', 'life_struct', sub, 'dwi', ...
@@ -48,14 +57,15 @@ for iSubj = 1:nSubj
         % load fe structure
         load(FileNameProb);
         % read nnz
-        nnz_prob(iSubj, r) = nnz(fe.life.M.Phi);        
+        nnz_prob(iSubj, r) = nnz(fe.life.M.Phi);  
+        nnz_prob_afterlife(iSubj, r) = nnz(ttv(fe.life.M.Phi,fe.life.fit.weights,3));
         
     end
    
 end
 
 disp('SAVING RESULTS...')
-save(fullfile(dataOutputPath,'nnz_results.mat'), 'nnz_prob','nnz_det','subjects','datasets','-v7.3')
+save(fullfile(dataOutputPath,'nnz_results.mat'), 'nnz_prob','nnz_det','nnz_tensor','nnz_prob_afterlife','nnz_det_afterlife','subjects','datasets','-v7.3')
 
 rmpath(genpath(Encode_path));
 
