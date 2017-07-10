@@ -1,4 +1,5 @@
 import scipy.io
+import h5py
 import csv
 import numpy
 import sys
@@ -11,13 +12,19 @@ def convert(input, name, dummy = False, validate = False, touch = False):
 
     if not dummy and not touch:
         # Load file
-        mat = scipy.io.loadmat(input)
+        # mat = scipy.io.loadmat(input)
+        mat = h5py.File(input, 'r')
+        kmat = mat.keys()[5]
+        omat = mat[kmat].value
 
         # Get fiber count
-        fiber_count = mat["emat"][:,:,0]
+        #fiber_count = mat["omat"][0,0,1]
+        fiber_count = omat[0,:,:]
 
         # Get fiber density
-        fiber_density = mat["emat"][:,:,1]
+        #fiber_density = mat["omat"][0,0,2]
+        fiber_density = omat[1,:,:]
+
         f = open(new_fiber_count, 'w')
         writer = csv.writer(f)
         for i in range(64):

@@ -3,7 +3,7 @@
 SUB=$1
 OUT=$2
 
-ID_0009=108323
+ID_0009=102311
 ID_0010=109123
 ID_0011=111312
 ID_0012=125525
@@ -15,83 +15,83 @@ SRC=/N/dc2/projects/lifebid/HCP7
 
 
 ### PREPROCESS ANAT
+#
+#mkdir -p ${OUT}/derivatives/preprocess/sub-${SUB}/anat
+#
+#cp ${SRC}/${ID}/anatomy/T1w_acpc_dc_restore_1.05_ACPC.nii.gz \
+#    ${OUT}/derivatives/preprocess/sub-${SUB}/anat/sub-${SUB}_T1w.nii.gz
+#
+#
+#### PREPROCESS DWI
+#
+#DWI=data_b2000_aligned_trilin_noMEC
+#
+#mkdir -p ${OUT}/derivatives/preprocess/sub-${SUB}/dwi
+#
+#cp ${SRC}/${ID}/dt6/${DWI}.nii.gz \
+#    ${OUT}/derivatives/preprocess/sub-${SUB}/dwi/sub-${SUB}_b-2000_dwi.nii.gz
+#cp ${SRC}/${ID}/dt6/${DWI}.bvals \
+#    ${OUT}/derivatives/preprocess/sub-${SUB}/dwi/sub-${SUB}_b-2000_dwi.bvals
+#cp ${SRC}/${ID}/dt6/${DWI}.bvecs \
+#    ${OUT}/derivatives/preprocess/sub-${SUB}/dwi/sub-${SUB}_b-2000_dwi.bvecs
+#cp ${SRC}/${ID}/dt6/dti64trilin/bin/brainMask.nii.gz \
+#    ${OUT}/derivatives/preprocess/sub-${SUB}/dwi/sub-${SUB}_dwi_brainmask.nii.gz
+#
+#
+#### RECON MODELS
+#
+#mkdir -p ${OUT}/derivatives/recon_models/sub-${SUB}/anat
+#
+#cp ${SRC}/${ID}/dt6/dti64trilin/bin/wmMask.nii.gz \
+#    ${OUT}/derivatives/recon_models/sub-${SUB}/anat/sub-${SUB}_T1_wmmask.nii.gz
+#
+#mkdir -p ${OUT}/O3D_HCP7T/derivatives/recon_models/sub-${SUB}/dwi
+#
+#mrconvert ${SRC}/${ID}/tractography/data_b2000_aligned_trilin_noMEC_dt.mif \
+#    ${OUT}/derivatives/recon_models/sub-${SUB}/dwi/sub-${SUB}_b-2000_dwi_DTI.nii.gz \
+#    -force
+#mrconvert ${SRC}/${ID}/tractography/data_b2000_aligned_trilin_noMEC_ev.mif \
+#    ${OUT}/derivatives/recon_models/sub-${SUB}/dwi/sub-${SUB}_b-2000_dwi_EV.nii.gz \
+#    -force
+#mrconvert ${SRC}/${ID}/tractography/data_b2000_aligned_trilin_noMEC_fa.mif \
+#    ${OUT}/derivatives/recon_models/sub-${SUB}/dwi/sub-${SUB}_b-2000_dwi_FA.nii.gz \
+#    -force
+#mrconvert ${SRC}/${ID}/tractography/data_b2000_aligned_trilin_noMEC_lmax8.mif \
+#    ${OUT}/derivatives/recon_models/sub-${SUB}/dwi/sub-${SUB}_b-2000_dwi_ODF.nii.gz \
+#    -force
+#cp ${SRC}/${ID}/tractography/data_b2000_aligned_trilin_noMEC_response.txt \
+#    ${OUT}/derivatives/recon_models/sub-${SUB}/dwi/sub-${SUB}_b-2000_dwi_dwiresponse.txt
 
-mkdir -p ${OUT}/O3D_HCP7T/derivatives/preprocess/sub-${SUB}/anat
-
-if [ ${SUB} == 0009 ]; then
-    cp ${SRC}/${ID}/anatomy/T1w_acpc_dc_restore_1p05_ACPC.nii.gz \
-	${OUT}/O3D_HCP7T/derivatives/preprocess/sub-${SUB}/anat/sub-${SUB}_T1w.nii.gz    
-else 
-    cp ${SRC}/${ID}/anatomy/T1w_acpc_dc_restore_1.05_ACPC.nii.gz \
-	${OUT}/O3D_HCP7T/derivatives/preprocess/sub-${SUB}/anat/sub-${SUB}_T1w.n
-fi
-
-
-### PREPROCESS DWI
-
-DWI=data_b2000_aligned_trilin_noMEC
-
-mkdir -p ${OUT}/O3D_HCP7T/derivatives/preprocess/sub-${SUB}/dwi
-
-cp ${SRC}/${ID}/dt6/${DWI}.nii.gz \
-    ${OUT}/O3D_HCP7T/derivatives/preprocess/sub-${SUB}/dwi/sub-${SUB}_b-2000_dwi.nii.gz
-cp ${SRC}/${ID}/dt6/${DWI}.bvals \
-    ${OUT}/O3D_HCP7T/derivatives/preprocess/sub-${SUB}/dwi/sub-${SUB}_b-2000_dwi.bvals
-cp ${SRC}/${ID}/dt6/${DWI}.bvecs \
-    ${OUT}/O3D_HCP7T/derivatives/preprocess/sub-${SUB}/dwi/sub-${SUB}_b-2000_dwi.bvecs
-cp ${SRC}/${ID}/dt6/dti64trilin/bin/brainMask.nii.gz \
-    ${OUT}/O3D_HCP7T/derivatives/preprocess/sub-${SUB}/dwi/sub-${SUB}_dwi_brainmask.nii.gz
-
-
-### RECON MODELS
-
-mkdir -p ${OUT}/O3D_HCP7T/derivatives/recon_models/sub-${SUB}/anat
-
-cp ${SRC}/${ID}/dt6/dti64trilin/bin/wmMask.nii.gz \
-    ${OUT}/O3D_HCP7T/derivatives/recon_models/sub-${SUB}/anat/sub-${SUB}_T1_wmmask.nii.gz
-
-mkdir -p ${OUT}/O3D_HCP7T/derivatives/recon_models/sub-${SUB}/dwi
-
-mrconvert ${SRC}/${ID}/tractography/data_b2000_aligned_trilin_noMEC_dt.mif \
-    ${OUT}/O3D_HCP7T/derivatives/recon_models/sub-${SUB}/dwi/sub-${SUB}_b-2000_dwi_DTI.nii.gz
-mrconvert ${SRC}/${ID}/tractography/data_b2000_aligned_trilin_noMEC_ev.mif \
-    ${OUT}/O3D_HCP7T/derivatives/recon_models/sub-${SUB}/dwi/sub-${SUB}_b-2000_dwi_EV.nii.gz
-mrconvert ${SRC}/${ID}/tractography/data_b2000_aligned_trilin_noMEC_fa.mif \
-    ${OUT}/O3D_HCP7T/derivatives/recon_models/sub-${SUB}/dwi/sub-${SUB}_b-2000_dwi_FA.nii.gz
-mrconvert ${SRC}/${ID}/tractography/data_b2000_aligned_trilin_noMEC_lmax8.mif \
-    ${OUT}/O3D_HCP7T/derivatives/recon_models/sub-${SUB}/dwi/sub-${SUB}_b-2000_dwi_ODF.nii.gz
-cp ${SRC}/${ID}/tractography/data_b2000_aligned_trilin_noMEC_response.txt \
-    ${OUT}/O3D_HCP7T/derivatives/recon_models/sub-${SUB}/dwi/sub-${SUB}_b-2000_dwi_dwiresponse.txt
 
 
 ### TRACTOGRAPHY
 
 TCK=data_b2000_aligned_trilin_noMEC
 
-mkdir -p ${OUT}/O3D_HCP7T/derivatives/tracking_dtidet_tck/sub-${SUB}/dwi
+mkdir -p ${OUT}/derivatives/tracking_dtidet_tck/sub-${SUB}
 for N in 01 02 03 04 05 06 07 08 09 10; do
     cp ${SRC}/${ID}/tractography/${TCK}_wm_tensor-NUM${N}-500000.tck \
-	${OUT}/O3D_HCP7T/derivatives/tracking_dtidet_tck/sub-${SUB}/dwi/sub-${SUB}_dwi_var-dtidet_run-${N}_tract.tck
+	${OUT}/derivatives/tracking_dtidet_tck/sub-${SUB}/sub-${SUB}_dwi_var-dtidet_run-${N}_tract.tck
 done
 
-mkdir -p ${OUT}/O3D_HCP7T/derivatives/tracking_csddet_tck/sub-${SUB}/dwi
+mkdir -p ${OUT}/derivatives/tracking_csddet_tck/sub-${SUB}
 for N in 01 02 03 04 05 06 07 08 09 10; do
     cp ${SRC}/${ID}/tractography/${TCK}_csd_lmax8_wm_SD_STREAM-NUM${N}-500000.tck \
-	${OUT}/O3D_HCP7T/derivatives/tracking_csddet_tck/sub-${SUB}/dwi/sub-${SUB}_dwi_var-csddet_run-${N}_tract.tck
+	${OUT}/derivatives/tracking_csddet_tck/sub-${SUB}/sub-${SUB}_dwi_var-csddet_run-${N}_tract.tck
 done
 
-mkdir -p ${OUT}/O3D_HCP7T/derivatives/tracking_csdprob_tck/sub-${SUB}/dwi
+mkdir -p ${OUT}/derivatives/tracking_csdprob_tck/sub-${SUB}
 for N in 01 02 03 04 05 06 07 08 09 10; do
     cp ${SRC}/${ID}/tractography/${TCK}_csd_lmax8_wm_SD_PROB-NUM${N}-500000.tck \
-	${OUT}/O3D_HCP7T/derivatives/tracking_csdprob_tck/sub-${SUB}/dwi/sub-${SUB}_dwi_var-csdprob_run-${N}_tract.tck
+	${OUT}/derivatives/tracking_csdprob_tck/sub-${SUB}/sub-${SUB}_dwi_var-csdprob_run-${N}_tract.tck
 done
 
 
-REF=${OUT}/O3D_HCP7T/derivatives/preprocess/sub-${SUB}/dwi/sub-${SUB}_dwi_brainmask.nii.gz
+REF=${OUT}/derivatives/preprocess/sub-${SUB}/dwi/sub-${SUB}_dwi_brainmask.nii.gz
 
-mkdir -p ${OUT}/O3D_HCP7T/derivatives/tracking_dtidet_trk/sub-${SUB}/dwi
-TCK=${OUT}/O3D_HCP7T/derivatives/tracking_dtidet_tck/sub-${SUB}/dwi
-TRK=${OUT}/O3D_HCP7T/derivatives/tracking_dtidet_trk/sub-${SUB}/dwi
+mkdir -p ${OUT}/derivatives/tracking_dtidet_trk/sub-${SUB}
+TCK=${OUT}/derivatives/tracking_dtidet_tck/sub-${SUB}
+TRK=${OUT}/derivatives/tracking_dtidet_trk/sub-${SUB}
 for N in 01 02 03 04 05 06 07 08 09 10; do
     TractConverter.py \
 	-i ${TCK}/sub-${SUB}_dwi_var-dtidet_run-${N}_tract.tck \
@@ -99,9 +99,9 @@ for N in 01 02 03 04 05 06 07 08 09 10; do
 	-a ${REF} -f
 done
 
-mkdir -p ${OUT}/O3D_HCP7T/derivatives/tracking_csddet_trk/sub-${SUB}/dwi
-TCK=${OUT}/O3D_HCP7T/derivatives/tracking_csddet_tck/sub-${SUB}/dwi
-TRK=${OUT}/O3D_HCP7T/derivatives/tracking_csddet_trk/sub-${SUB}/dwi
+mkdir -p ${OUT}/derivatives/tracking_csddet_trk/sub-${SUB}
+TCK=${OUT}/derivatives/tracking_csddet_tck/sub-${SUB}
+TRK=${OUT}/derivatives/tracking_csddet_trk/sub-${SUB}
 for N in 01 02 03 04 05 06 07 08 09 10; do
     TractConverter.py \
 	-i ${TCK}/sub-${SUB}_dwi_var-csddet_run-${N}_tract.tck \
@@ -109,9 +109,9 @@ for N in 01 02 03 04 05 06 07 08 09 10; do
 	-a ${REF} -f
 done
 
-mkdir -p ${OUT}/O3D_HCP7T/derivatives/tracking_csdprob_trk/sub-${SUB}/dwi
-TCK=${OUT}/O3D_HCP7T/derivatives/tracking_csdprob_tck/sub-${SUB}/dwi
-TRK=${OUT}/O3D_HCP7T/derivatives/tracking_csdprob_trk/sub-${SUB}/dwi
+mkdir -p ${OUT}/derivatives/tracking_csdprob_trk/sub-${SUB}
+TCK=${OUT}/derivatives/tracking_csdprob_tck/sub-${SUB}
+TRK=${OUT}/derivatives/tracking_csdprob_trk/sub-${SUB}
 for N in 01 02 03 04 05 06 07 08 09 10; do
     TractConverter.py \
 	-i ${TCK}/sub-${SUB}_dwi_var-csdprob_run-${N}_tract.tck \
@@ -119,6 +119,7 @@ for N in 01 02 03 04 05 06 07 08 09 10; do
 	-a ${REF} -f
 done
 
+exit
 
 ### LIFE STRUCT
 
