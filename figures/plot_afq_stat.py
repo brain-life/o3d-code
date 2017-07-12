@@ -9,7 +9,7 @@ from matplotlib import colors as mcolors
 
 
 def load_afq_stat(sub, trk):
-    ref = '/N/dc2/projects/o3d/test3/O3D_{}/derivatives/dissection_{}_trk/sub-{}/dwi/sub-{}_dwi_var-{}life_run-{}_var-afq_set-{}_tract.trk'
+    ref = '/N/dc2/projects/o3d/data/derivatives/dissection_afq_{}_trk/sub-{}/sub-{}_dwi_var-{}life_run-{}_var-afq_set-{}_tract.trk'
     run = ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10']
     afq = ['ARCl', 'ARCr', 'ATRl', 'ATRr', 'CCgl', 'CCgr', 'CHyl', 'CHyr', 'CSTl', 'CSTr', 'FMI', 'FMJ', 'IFOFl', 'IFOFr', 'ILFl', 'ILFr', 'SLFl', 'SLFr', 'UFl', 'UFr']
     o3d = {'0001':'STN', '0002':'STN', '0003':'STN', '0004':'STN', \
@@ -18,7 +18,7 @@ def load_afq_stat(sub, trk):
     stat = np.empty((len(afq), len(run)))
     for f in range(len(afq)):
         for r in range(len(run)):
-            src = ref.format(o3d[sub], trk, sub, sub, trk, run[r], afq[f])
+            src = ref.format(trk, sub, sub, trk, run[r], afq[f])
             tractogram = nib.streamlines.load(src)
             stat[f, r] = tractogram.header['nb_streamlines']
     return stat
