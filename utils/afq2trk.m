@@ -29,10 +29,11 @@ afq_code{19} = 'ARCl';
 afq_code{20} = 'ARCr';
 
 % Load the afq structure stored as mat file
-load(afq_src);
+afq=load(afq_src);
+fg=afq.fg;
 
 % Write each tract
-for t=1:size(fascicles,2)
+for t=1:size(fg,2)
     trk_subset = [trk_out '_set-' afq_code{t} '_tract.trk'];
-    write_fg_to_trk(fascicles(t), ref_src, trk_subset);
+    write_fg_to_trk(fg(t), ref_src, trk_subset);
 end

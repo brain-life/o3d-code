@@ -36,11 +36,16 @@ w = feGet(fe,'fiber weights');
 
 % Extract fascicles in (dwi?) acpc space
 fg = feGet(fe,'fibers acpc');  
+fg = fgExtract(fg, w > 0, 'keep');
+
+%fgWrite(fg, fullfile('/N/dc2/projects/o3d/temp', '_afq_wallfg'),'mat');
+%exit;
 
 % Load dt6 file
 dt = dtiLoadDt6(dt6_src);
 
 %fg = AFQ_WholebrainTractography(dt,['test']);
+%[fg_classified,~,classification]= AFQ_SegmentFiberGroups(dt, fg);
 [fg_classified,~,classification,fg]= AFQ_SegmentFiberGroups(dt, fg, [], [], false);
 fascicles = fg2Array(fg_classified)
 
@@ -48,7 +53,10 @@ fascicles = fg2Array(fg_classified)
 %[fascicles,classification,fg,fg_classified] = feAfqSegment(dt6_src, fg);
 
 % Save results to disk
-%save(afq_out,'fascicles','classification','fg_classified');
+%afq_out='/N/dc2/projects/o3d/temp';
+%save(fullfile(afq_out, '_afq_fascicles.mat'),'fascicles');
+%save(fullfile(afq_out, '_afq_classification.mat'),'classification');
+fgWrite(fg_classified, fullfile(trk_out, '_set-ALL'),'mat');
 
 % Write each tract
 for t=1:size(fascicles,2)

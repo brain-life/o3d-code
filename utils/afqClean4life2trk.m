@@ -36,6 +36,7 @@ w = feGet(fe,'fiber weights');
 
 % Extract fascicles in (dwi?) acpc space
 fg = feGet(fe,'fibers acpc');  
+fg = fgExtract(fg, w > 0, 'keep');
 
 % Load dt6 file
 dt = dtiLoadDt6(dt6_src);
@@ -49,12 +50,13 @@ fascicles = fg2Array(fg_classified)
 
 % Save results to disk
 %save(afq_out,'fascicles','classification','fg_classified');
+fgWrite(fg_classified, [trk_out, '_set-ALL.mat']);
 
 % Clean tract parameters
-maxDist = 3;
-maxLenStd = 3;
+maxDist = 5; %
+maxLenStd = 5; %
 numNodes = 100;
-centralTendency = 'mean';
+centralTendency = 'median';
 count = 0;
 maxIter = 5;
 

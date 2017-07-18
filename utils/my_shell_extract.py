@@ -63,7 +63,7 @@ if __name__ == '__main__':
     parser.add_argument('-obvec', nargs='?', help='', required=False)
     parser.add_argument('-obval', nargs='?', help='', required=False)
     parser.add_argument('-b', type=int, nargs='+', help='', required=True)
-    parser.add_argument('-r', '--round', action='store_true', 
+    parser.add_argument('-r', action='store_true', 
                         required=False, default=False,
                         help='True if the b-value should be rounded')
     parser.add_argument('-delta', '-d', type=int, 
@@ -85,7 +85,7 @@ if __name__ == '__main__':
 
     grad = shell_extraction(args.i, args.ibvec, args.ibval, 
                             args.o, args.obvec, args.obval, 
-                            args.b, args.delta, args.round, args.v)
+                            args.b, args.delta, args.r, args.v)
 
     print "Extracted %d gradients." % grad
 

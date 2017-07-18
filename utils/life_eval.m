@@ -55,9 +55,9 @@ disp('Fit LiFE model... DONE ');
 save(fe_out,'fe','-v7.3');
 
 rmpath(genpath(new_LiFE_path));
-rmpath(genpath(vista_soft_path));
-rmpath(genpath(local_path));
-addpath(genpath(my_vista_soft_path));
+%rmpath(genpath(vista_soft_path));
+%rmpath(genpath(local_path));
+%addpath(genpath(my_vista_soft_path));
 
 end
 

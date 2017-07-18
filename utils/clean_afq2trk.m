@@ -29,20 +29,21 @@ afq_code{19} = 'ARCl';
 afq_code{20} = 'ARCr';
 
 % Load the afq structure stored as mat file
-load(afq_src);
+afq=load(afq_src);
+fg=afq.fg;
 
 % Clean tract parameters
-maxDist = 3;
-maxLenStd = 3;
+maxDist = 5;
+maxLenStd = 5;
 numNodes = 100;
-centralTendency = 'mean';
+centralTendency = 'median';
 count = 0;
 maxIter = 5;
 
 % Write each tract
-for t=1:size(fascicles,2)
+for t=1:size(fg,2)
     trk_subset = [trk_out '_set-' afq_code{t} '_tract.trk'];
-    tract = fascicles(t);
+    tract = fg(t);
     [clean, fibers] = clean_tract(tract, maxDist, maxLenStd, numNodes, centralTendency, count, maxIter);
     write_fg_to_trk(clean, ref_src, trk_subset);
 end
