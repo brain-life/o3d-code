@@ -23,16 +23,13 @@ display('Extracting data for network construction...');
 fg               = feGet(fe,   'fg acpc'); 
 fascicle_length  = fefgGet(fg, 'length');
 fascicle_weights = feGet(fe,   'fiber weights');
-nTheta           = feGet(fe,   'nbvals');
-M                = feGet(fe,   'model');
-measured_dsig    = feGet(fe,   'dsigdemeaned by voxel');
 
 % manage workspace
 clear fe
 
 %% start parallel pool
 
-display(['Opening parallel pool with ', num2str(nclust), ' cores...']);
+disp(['Opening parallel pool with ', num2str(nclust), ' cores...']);
 
 % create parallel cluster object
 c = parcluster;
@@ -52,22 +49,19 @@ if OK
     c.JobStorageLocation = t;
 end
 
-% catch cache dir path for output
-files.cache = t;
-
 % start parpool - close parpool at end of fxn
 pool = parpool(c, nclust, 'IdleTimeout', 120);
 
 %% create networks
 
-display('Computing network values...');
+disp('Computing network values...');
 
 % assign streamline endpoints to labeled volume
-[ pconn, rois ] = feCreatePairedConnections(labels, fg.fibers, fascicle_length, fascicle_weights);
+[ pconn, ~ ] = feCreatePairedConnections(labels, fg.fibers, fascicle_length, fascicle_weights);
 
 %% create adjacency matrices
 
-display('Creating network statistics...');
+disp('Creating network statistics...');
 
 % create all streamline matrices
 [ amat, alab ] = feCreateAdjacencyMatrices(pconn, 'all');
@@ -79,7 +73,7 @@ olab = [ alab nlab ];
 
 %% save outputs
 
-display('Saving results...');
+disp('Saving results...');
 
 % write output to .mat
 %save(files.path.output, 'pconn', 'rois', 'omat', 'olab', 'glob', 'node', 'nets', 'files', '-v7.3');
