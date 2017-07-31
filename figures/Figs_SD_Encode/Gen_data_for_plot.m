@@ -39,8 +39,13 @@ for iSubj = 1:nSubj
         % Tensor
         %FileNameTensor    = deblank(ls(fullfile(dataRootPath, data, 'derivatives', 'life_struct', sub, 'dwi', ...
         %    strcat(sub, '_dwi_var-','dtidet','life_run-',rep,'_life.mat'))));    
-        FileNameTensor    = deblank(ls(fullfile(dataRootPath, 'derivatives', 'life_struct', sub, ...
-            strcat(sub, '_dwi_var-','dtidet','life_run-',rep,'_life.mat'))));  
+        if iSubj > 8
+            FileNameTensor    = deblank(ls(fullfile(dataRootPath, 'derivatives', 'life_struct', sub, ...
+                strcat(sub, '_dwi_var-','dtidet','_run-',rep,'_life.mat'))));
+        else
+            FileNameTensor    = deblank(ls(fullfile(dataRootPath, 'derivatives', 'life_struct', sub, ...
+                strcat(sub, '_dwi_var-','dtidet','life_run-',rep,'_life.mat'))));
+        end
         % load fe structure
         load(FileNameTensor); 
         nnz_tenor(iSubj, r) = nnz(fe.life.M.Phi);
@@ -48,8 +53,13 @@ for iSubj = 1:nSubj
         % Deterministic
         %FileNameDet    = deblank(ls(fullfile(dataRootPath, data, 'derivatives', 'life_struct', sub, 'dwi', ...
         %    strcat(sub, '_dwi_var-','csddet','life_run-',rep,'_life.mat')))); 
-        FileNameDet    = deblank(ls(fullfile(dataRootPath, 'derivatives', 'life_struct', sub, ...
-            strcat(sub, '_dwi_var-','csddet','life_run-',rep,'_life.mat')))); 
+        if iSubj > 8
+            FileNameDet    = deblank(ls(fullfile(dataRootPath, 'derivatives', 'life_struct', sub, ...
+                strcat(sub, '_dwi_var-','csddet','_run-',rep,'_life.mat'))));
+        else
+            FileNameDet    = deblank(ls(fullfile(dataRootPath, 'derivatives', 'life_struct', sub, ...
+                strcat(sub, '_dwi_var-','csddet','life_run-',rep,'_life.mat'))));
+        end
         % load fe structure
         load(FileNameDet);
         % read nnz
@@ -59,8 +69,13 @@ for iSubj = 1:nSubj
         % Probabilistic
 %         FileNameProb    = deblank(ls(fullfile(dataRootPath, data, 'derivatives', 'life_struct', sub, 'dwi', ...
 %             strcat(sub, '_dwi_var-','csdprob','life_run-',rep,'_life.mat')))); 
+        if iSubj > 8
         FileNameProb    = deblank(ls(fullfile(dataRootPath, 'derivatives', 'life_struct', sub, ...
-            strcat(sub, '_dwi_var-','csdprob','life_run-',rep,'_life.mat')))); 
+            strcat(sub, '_dwi_var-','csdprob','_run-',rep,'_life.mat')))); 
+        else
+            FileNameProb    = deblank(ls(fullfile(dataRootPath, 'derivatives', 'life_struct', sub, ...
+            strcat(sub, '_dwi_var-','csdprob','life_run-',rep,'_life.mat'))));      
+        end
         % load fe structure
         load(FileNameProb);
         % read nnz
@@ -72,7 +87,8 @@ for iSubj = 1:nSubj
 end
 
 disp('SAVING RESULTS...')
-save(fullfile(dataOutputPath,'nnz_results.mat'), 'nnz_prob','nnz_det','nnz_tensor','nnz_prob_afterlife','nnz_det_afterlife','nnz_tensor_afterlife','subjects','datasets','-v7.3')
+%save(fullfile(dataOutputPath,'nnz_results.mat'), 'nnz_prob','nnz_det','nnz_tensor','nnz_prob_afterlife','nnz_det_afterlife','nnz_tensor_afterlife','subjects','datasets','-v7.3')
+save(fullfile(dataOutputPath,'nnz_results.mat'), 'nnz_prob','nnz_det','nnz_tensor','nnz_prob_afterlife','nnz_det_afterlife','nnz_tensor_afterlife','subjects','-v7.3')
 
 rmpath(genpath(Encode_path));
 
