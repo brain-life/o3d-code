@@ -51,4 +51,4 @@ cp -r $SRC/input \
     $OUT/input
 
 cp $SRC/T1w_dtissue.json \
-    $OUT/derivatives/preprocess/anat/T1w_dtissue.json
+    $OUT/derivatives/preprocess/T1w_dtissue.json
