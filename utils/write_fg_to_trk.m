@@ -82,7 +82,7 @@ hdr_trk.version = 2;
 hdr_trk.hdr_size = 1000;
 
 % Begin writing the trk file
-fid = fopen(trk_file , 'W');
+fid = fopen(trk_file , 'w');
 
 % Writing the header of trk file
 % (some features are not implemented)
