@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 
 """
-Shell extraction
+Extraction and average of b0 from dwi file
 
 """
 
