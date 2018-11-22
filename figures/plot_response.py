@@ -20,8 +20,8 @@ def plot_response(src_txt, out_png=False):
     sphere_actor = actor.odf_slicer(sig_resp, sphere=sphere)
     ren.add(sphere_actor)
     my_camera = ren.camera()
-    my_camera.SetPosition(-0.19, -6.03, 1.27)
-    my_camera.SetFocalPoint(-1.10, -1.10, -1.10)
+    my_camera.SetPosition(1.62, -9.19, 4.01)
+    my_camera.SetFocalPoint(0.01, -0.46, -0.19)
     my_camera.SetViewUp(0.24, 0.46, 0.86)
 
     if out_png:
